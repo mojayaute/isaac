@@ -52,7 +52,17 @@
 }
 
 @media (max-width: 768px) {
+  .signature-box {
+    padding: 0.75rem;
+  }
+
   .signature-box canvas {
     width: 100%;
+    touch-action: none;
+  }
+
+  .clear-btn {
+    width: 100%;
+    min-height: 44px;
   }
 }

@@ -33,7 +33,7 @@ const FormTable = ({
 
   const addRow = () => {
     if (fields.length < maxRows) {
-      const newRow: any = {};
+      const newRow: Record<string, string> = {};
       columns.forEach((col) => {
         newRow[col.key] = '';
       });
@@ -47,16 +47,40 @@ const FormTable = ({
     }
   };
 
-  // Inicializar con filas por defecto si está vacío
   if (fields.length === 0) {
     for (let i = 0; i < defaultRows; i++) {
       addRow();
     }
   }
 
+  const renderField = (col: TableColumn, index: number) => {
+    const fieldName = `${name}.${index}.${col.key}`;
+    const rules = {
+      required: col.required ? `${col.label} es requerido` : false,
+    };
+
+    if (col.type === 'textarea') {
+      return (
+        <textarea
+          {...register(fieldName, rules)}
+          rows={2}
+          placeholder={col.label}
+        />
+      );
+    }
+
+    return (
+      <input
+        type="text"
+        {...register(fieldName, rules)}
+        placeholder={col.label}
+      />
+    );
+  };
+
   return (
     <div className="form-table-container">
-      <table className="form-table">
+      <table className="form-table form-table-desktop">
         <thead>
           <tr>
             {columns.map((col) => (
@@ -72,25 +96,7 @@ const FormTable = ({
           {fields.map((field, index) => (
             <tr key={field.id}>
               {columns.map((col) => (
-                <td key={col.key}>
-                  {col.type === 'textarea' ? (
-                    <textarea
-                      {...register(`${name}.${index}.${col.key}`, {
-                        required: col.required ? `${col.label} es requerido` : false,
-                      })}
-                      rows={2}
-                      placeholder={col.label}
-                    />
-                  ) : (
-                    <input
-                      type="text"
-                      {...register(`${name}.${index}.${col.key}`, {
-                        required: col.required ? `${col.label} es requerido` : false,
-                      })}
-                      placeholder={col.label}
-                    />
-                  )}
-                </td>
+                <td key={col.key}>{renderField(col, index)}</td>
               ))}
               <td className="actions-col">
                 {fields.length > 1 && (
@@ -99,6 +105,7 @@ const FormTable = ({
                     onClick={() => removeRow(index)}
                     className="remove-row-btn"
                     title="Eliminar fila"
+                    aria-label={`Eliminar fila ${index + 1}`}
                   >
                     ✕
                   </button>
@@ -108,12 +115,38 @@ const FormTable = ({
           ))}
         </tbody>
       </table>
+
+      <div className="form-table-mobile">
+        {fields.map((field, index) => (
+          <div key={field.id} className="form-table-card">
+            <div className="form-table-card-header">
+              <span className="form-table-card-title">Fila {index + 1}</span>
+              {fields.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => removeRow(index)}
+                  className="remove-row-btn remove-row-btn-text"
+                  aria-label={`Eliminar fila ${index + 1}`}
+                >
+                  Eliminar
+                </button>
+              )}
+            </div>
+            {columns.map((col) => (
+              <div key={col.key} className="form-table-card-field">
+                <label>
+                  {col.label}
+                  {col.required && <span className="required">*</span>}
+                </label>
+                {renderField(col, index)}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
       {fields.length < maxRows && (
-        <button
-          type="button"
-          onClick={addRow}
-          className="add-row-btn"
-        >
+        <button type="button" onClick={addRow} className="add-row-btn">
           + Agregar Fila
         </button>
       )}

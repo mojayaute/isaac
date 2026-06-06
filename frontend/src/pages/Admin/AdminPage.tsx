@@ -15,6 +15,38 @@ const AdminPage = () => {
   return (
     <div className="admin-page">
       <h1>Panel de Administración</h1>
+
+      <div className="users-mobile-list">
+        {users?.map((user) => (
+          <div key={user.id} className="user-card">
+            <div className="user-card-header">
+              <strong>{user.username}</strong>
+              <span className={`role-badge ${user.role}`}>{user.role}</span>
+            </div>
+            <div className="user-card-row">
+              <span className="user-card-label">Nombre</span>
+              <span>{user.full_name || '-'}</span>
+            </div>
+            <div className="user-card-row">
+              <span className="user-card-label">Email</span>
+              <span>{user.email || '-'}</span>
+            </div>
+            <div className="user-card-row">
+              <span className="user-card-label">Estado</span>
+              <span className={user.is_active ? 'status-active' : 'status-inactive'}>
+                {user.is_active ? 'Activo' : 'Inactivo'}
+              </span>
+            </div>
+            <button type="button" className="view-btn view-btn-full">
+              Ver Respuestas
+            </button>
+          </div>
+        ))}
+        {users?.length === 0 && (
+          <div className="empty-state">No hay usuarios registrados</div>
+        )}
+      </div>
+
       <div className="users-table-container">
         <table className="users-table">
           <thead>
@@ -44,7 +76,7 @@ const AdminPage = () => {
                   </span>
                 </td>
                 <td>
-                  <button className="view-btn">Ver Respuestas</button>
+                  <button type="button" className="view-btn">Ver Respuestas</button>
                 </td>
               </tr>
             ))}

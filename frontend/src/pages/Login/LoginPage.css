@@ -1,10 +1,13 @@
 .login-container {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 1rem;
+  padding-top: max(1rem, env(safe-area-inset-top));
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
 .login-card {
@@ -81,12 +84,14 @@
   color: white;
   border: none;
   padding: 0.75rem;
+  min-height: 48px;
   border-radius: 6px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   margin-top: 0.5rem;
+  width: 100%;
 }
 
 .submit-btn:hover:not(:disabled) {

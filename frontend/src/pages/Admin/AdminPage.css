@@ -7,6 +7,10 @@
   color: #2c3e50;
 }
 
+.users-mobile-list {
+  display: none;
+}
+
 .users-table-container {
   background: white;
   border-radius: 8px;
@@ -38,6 +42,36 @@
 
 .users-table tbody tr:hover {
   background-color: #f8f9fa;
+}
+
+.user-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.user-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+.user-card-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.user-card-label {
+  color: #7f8c8d;
+  flex-shrink: 0;
 }
 
 .role-badge {
@@ -73,10 +107,16 @@
   color: white;
   border: none;
   padding: 0.5rem 1rem;
+  min-height: 44px;
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
   transition: background-color 0.2s;
+}
+
+.view-btn-full {
+  width: 100%;
+  margin-top: 0.75rem;
 }
 
 .view-btn:hover {
@@ -85,7 +125,7 @@
 
 .empty-state {
   text-align: center;
-  padding: 3rem;
+  padding: 3rem 1rem;
   color: #7f8c8d;
 }
 
@@ -96,12 +136,16 @@
 }
 
 @media (max-width: 768px) {
-  .users-table {
-    font-size: 0.9rem;
+  .admin-page h1 {
+    font-size: 1.35rem;
+    margin-bottom: 1.25rem;
   }
 
-  .users-table th,
-  .users-table td {
-    padding: 0.75rem 0.5rem;
+  .users-mobile-list {
+    display: block;
+  }
+
+  .users-table-container {
+    display: none;
   }
 }

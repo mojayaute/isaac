@@ -52,4 +52,19 @@
   .form-checkbox .checkbox-group {
     grid-template-columns: 1fr;
   }
+
+  .form-checkbox .checkbox-item {
+    min-height: 48px;
+  }
+
+  .form-checkbox .checkbox-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+
+  .form-checkbox .quantity-input {
+    width: 72px;
+    min-height: 44px;
+    font-size: 16px;
+  }
 }

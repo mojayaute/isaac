@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { authApi } from '../../services/api';
 import './Layout.css';
@@ -9,6 +10,18 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
 
   const handleLogout = () => {
     authApi.logout();
@@ -23,8 +36,19 @@ const Layout = ({ children }: LayoutProps) => {
     <div className="layout">
       <header className="header">
         <div className="header-content">
-          <h1>Sistema IPH-DELITOS</h1>
-          <nav className="nav">
+          <div className="header-brand">
+            <h1>Sistema IPH-DELITOS</h1>
+            <button
+              type="button"
+              className="menu-toggle"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-expanded={menuOpen}
+              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            >
+              {menuOpen ? '✕' : '☰'}
+            </button>
+          </div>
+          <nav className={`nav ${menuOpen ? 'nav-open' : ''}`}>
             <Link to="/" className={isActive('/')}>
               Dashboard
             </Link>
@@ -36,6 +60,14 @@ const Layout = ({ children }: LayoutProps) => {
             </button>
           </nav>
         </div>
+        {menuOpen && (
+          <button
+            type="button"
+            className="nav-backdrop"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Cerrar menú"
+          />
+        )}
       </header>
       <main className="main-content">
         {children}
