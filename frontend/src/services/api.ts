@@ -97,7 +97,7 @@ export const responsesApi = {
     }
   },
 
-  save: async (formNumberOrId: number, formData: Record<string, any>, status: 'draft' | 'submitted' = 'draft'): Promise<UserResponse> => {
+  save: async (formNumberOrId: number, formData: Record<string, any>, status: 'draft' | 'submitted' | 'completed' = 'draft'): Promise<UserResponse> => {
     const response = await api.post<UserResponse>('/responses', {
       form_number: formNumberOrId, // Usar form_number para mayor claridad
       form_data: formData,

@@ -1,7 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { useForm, useFieldArray } from 'react-hook-form';
-import type { Control } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import { formsApi, responsesApi, authApi } from '../../services/api';
 import { getFormConfig } from '../../data/forms-config';
@@ -67,7 +66,7 @@ const FormPage = () => {
 
   // Mutation para guardar
   const saveMutation = useMutation({
-    mutationFn: async (data: { formData: any; status: 'draft' | 'submitted' }) => {
+    mutationFn: async (data: { formData: any; status: 'draft' | 'submitted' | 'completed' }) => {
       if (savedResponse) {
         return responsesApi.update(savedResponse.id, data.formData, data.status);
       } else {

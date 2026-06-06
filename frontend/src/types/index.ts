@@ -27,7 +27,7 @@ export interface UserResponse {
   id: string;
   user_id: string;
   form_id: number;
-  form_data: Record<string, any>; // JSON flexible
+  formData: Record<string, any>; // JSON flexible (camelCase desde la API)
   status: 'draft' | 'submitted' | 'completed';
   created_at: string;
   updated_at: string;
