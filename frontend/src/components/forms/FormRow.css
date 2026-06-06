@@ -1,0 +1,36 @@
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.form-row > * {
+  flex: 1;
+  min-width: 200px;
+}
+
+.form-row .form-field.small {
+  flex: 0.5;
+  min-width: 100px;
+}
+
+.form-row .form-field.full {
+  flex: 1 1 100%;
+  min-width: 100%;
+}
+
+/* Si solo hay un elemento, que ocupe el ancho completo */
+.form-row:has(> :only-child) > * {
+  flex: 1 1 100%;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+  
+  .form-row > * {
+    min-width: 100%;
+  }
+}

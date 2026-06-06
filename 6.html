@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Detención - Anexo A (Continuación)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.small {
+            min-width: 100px;
+            flex: 0.5;
+        }
+        
+        .form-group.full {
+            flex: 1 1 100%;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .rights-list {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            margin: 15px 0;
+        }
+        
+        .rights-list ol {
+            margin-left: 20px;
+        }
+        
+        .rights-list li {
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .adolescent-rights {
+            background-color: #fff3cd;
+            border-left-color: #ffc107;
+            margin-top: 10px;
+        }
+        
+        .signature-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 15px;
+            background-color: #f9f9f9;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .signature-box label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        table th,
+        table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+            font-size: 13px;
+        }
+        
+        table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        table input[type="text"],
+        table textarea {
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 5px;
+        }
+        
+        .note {
+            font-size: 11px;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ANEXO A. DETENCIÓN(ES) - Continuación</h1>
+        
+        <form id="detencionFormContinuacion">
+            <!-- Apartado A.4 -->
+            <div class="section">
+                <div class="section-title">Apartado A.4 Constancia de lectura de derechos de la persona detenida</div>
+                <div class="subtitle">Artículo 20 apartado B de la Constitución Política de los Estados Unidos Mexicanos y artículo 152 del Código Nacional de Procedimientos Penales</div>
+                
+                <strong style="display: block; margin-bottom: 15px;">Informe a la persona detenida:</strong>
+                
+                <div class="rights-list">
+                    <ol>
+                        <li>Usted tiene derecho a conocer el motivo de su detención.</li>
+                        <li>Usted tiene derecho a guardar silencio.</li>
+                        <li>Usted tiene derecho a declarar, y en caso de hacerlo, lo hará asistido de su defensor ante la autoridad competente.</li>
+                        <li>Usted tiene derecho a ser asistido por un defensor, si no quiere o no puede hacerlo, le será designado un defensor público.</li>
+                        <li>Usted tiene derecho a hacer del conocimiento a un familiar o persona que desee, los hechos de su detención y el lugar de custodia en que se halle en cada momento.</li>
+                        <li>Usted es considerado inocente desde este momento hasta que se determine lo contrario.</li>
+                        <li>En caso de ser extranjero, Usted tiene derecho a que el consulado de su país sea notificado de su detención.</li>
+                        <li>Usted tiene derecho a un traductor o intérprete, el cual será proporcionado por el Estado.</li>
+                        <li>Usted tiene derecho a ser presentado ante el Ministerio Público o Juez de Control, según sea el caso, inmediatamente después de ser detenido o aprehendido.</li>
+                    </ol>
+                </div>
+                
+                <strong style="display: block; margin: 20px 0 15px 0;">Si la persona detenida es un adolescente, infórmele también:</strong>
+                
+                <div class="rights-list adolescent-rights">
+                    <ol start="10">
+                        <li>Usted tiene derecho a permanecer en un lugar distinto al de los adultos.</li>
+                        <li>Usted tiene derecho a un trato digno y de conformidad con su condición de adolescente.</li>
+                        <li>Usted tiene derecho a que la autoridad informe sobre su detención a la procuraduría federal o local de protección de niñas, niños y adolescentes.</li>
+                    </ol>
+                </div>
+                
+                <div class="form-row" style="margin-top: 20px;">
+                    <div class="form-group full">
+                        <label>¿Le informó sus derechos a la persona detenida?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="informo_derechos" value="si" id="derechos_si" required>
+                                <label for="derechos_si" style="margin: 0;">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="informo_derechos" value="no" id="derechos_no">
+                                <label for="derechos_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="signature-box">
+                    <label>Firma/Huella de la persona detenida</label>
+                    <div style="margin-top: 30px; font-size: 12px; color: #999;">
+                        [Espacio para firma o huella digital]
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado A.5 -->
+            <div class="section">
+                <div class="section-title">Apartado A.5 Inspección a la persona detenida</div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Al momento de realizar la inspección a la persona detenida, ¿le encontró algún objeto relacionado con los hechos?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="objetos_encontrados" value="si" id="objetos_si">
+                                <label for="objetos_si" style="margin: 0;">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="objetos_encontrados" value="no" id="objetos_no">
+                                <label for="objetos_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                        <div class="note">Si respondió Sí, llene el Anexo D</div>
+                    </div>
+                </div>
+                
+                <div class="form-row" style="margin-top: 20px;">
+                    <div class="form-group full">
+                        <label>¿Recolectó pertenencias de la persona detenida?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="pertenencias_recolectadas" value="si" id="pertenencias_si">
+                                <label for="pertenencias_si" style="margin: 0;">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="pertenencias_recolectadas" value="no" id="pertenencias_no">
+                                <label for="pertenencias_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <strong style="display: block; margin: 20px 0 10px 0;">Complete el siguiente cuadro</strong>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;">#</th>
+                            <th style="width: 35%;">Pertenencias</th>
+                            <th style="width: 35%;">Breve descripción</th>
+                            <th style="width: 25%;">Destino que se le dio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><input type="text" name="pertenencia_1"></td>
+                            <td><textarea name="descripcion_1" rows="2"></textarea></td>
+                            <td><input type="text" name="destino_1"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><input type="text" name="pertenencia_2"></td>
+                            <td><textarea name="descripcion_2" rows="2"></textarea></td>
+                            <td><input type="text" name="destino_2"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><input type="text" name="pertenencia_3"></td>
+                            <td><textarea name="descripcion_3" rows="2"></textarea></td>
+                            <td><input type="text" name="destino_3"></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><input type="text" name="pertenencia_4"></td>
+                            <td><textarea name="descripcion_4" rows="2"></textarea></td>
+                            <td><input type="text" name="destino_4"></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><input type="text" name="pertenencia_5"></td>
+                            <td><textarea name="descripcion_5" rows="2"></textarea></td>
+                            <td><input type="text" name="destino_5"></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><input type="text" name="pertenencia_6"></td>
+                            <td><textarea name="descripcion_6" rows="2"></textarea></td>
+                            <td><input type="text" name="destino_6"></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><input type="text" name="pertenencia_7"></td>
+                            <td><textarea name="descripcion_7" rows="2"></textarea></td>
+                            <td><input type="text" name="destino_7"></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><input type="text" name="pertenencia_8"></td>
+                            <td><textarea name="descripcion_8" rows="2"></textarea></td>
+                            <td><input type="text" name="destino_8"></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><input type="text" name="pertenencia_9"></td>
+                            <td><textarea name="descripcion_9" rows="2"></textarea></td>
+                            <td><input type="text" name="destino_9"></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><input type="text" name="pertenencia_10"></td>
+                            <td><textarea name="descripcion_10" rows="2"></textarea></td>
+                            <td><input type="text" name="destino_10"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Apartado A.6 -->
+            <div class="section">
+                <div class="section-title">Apartado A.6 Datos del lugar de la detención</div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿El lugar de la detención es el mismo que el de la intervención?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="mismo_lugar" value="si" id="lugar_si">
+                                <label for="lugar_si" style="margin: 0;">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="mismo_lugar" value="no" id="lugar_no">
+                                <label for="lugar_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                        <div class="note">Si respondió No, indique la dirección.</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 2;">
+                            <label>Calle/Tramo carretero:</label>
+                            <input type="text" name="lugar_calle">
+                        </div>
+                        <div class="form-group small">
+                            <label>No. exterior:</label>
+                            <input type="text" name="lugar_num_exterior">
+                        </div>
+                        <div class="form-group small">
+                            <label>No. interior:</label>
+                            <input type="text" name="lugar_num_interior">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Código Postal:</label>
+                            <input type="text" name="lugar_codigo_postal" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label>Colonia/Localidad:</label>
+                            <input type="text" name="lugar_colonia">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Municipio/Demarcación territorial:</label>
+                            <input type="text" name="lugar_municipio">
+                        </div>
+                        <div class="form-group">
+                            <label>Entidad federativa:</label>
+                            <input type="text" name="lugar_entidad_federativa">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>Referencias:</label>
+                            <textarea name="lugar_referencias" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit">Guardar Formulario</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('detencionFormContinuacion').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del formulario (continuación):', data);
+            alert('Formulario guardado. Revisa la consola para ver los datos.');
+        });
+    </script>
+</body>
+</html>

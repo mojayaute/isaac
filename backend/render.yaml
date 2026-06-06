@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: iph-backend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DATABASE_PATH
+        value: /opt/render/project/src/data/database.sqlite
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 24h
+      - key: CORS_ORIGIN
+        sync: false  # Configurar manualmente con la URL de Vercel

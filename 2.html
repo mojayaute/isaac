@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPH - Página 2 de 4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: -20px -20px 15px -20px;
+        }
+        
+        .subsection-title {
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.small {
+            min-width: 100px;
+            flex: 0.5;
+        }
+        
+        .form-group.full {
+            flex: 1 1 100%;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .checkbox-item label {
+            margin: 0;
+        }
+        
+        .institution-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .note {
+            font-size: 11px;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .inline-input {
+            display: inline-block;
+            width: 200px;
+            margin-left: 10px;
+        }
+        
+        .page-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #333;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .datetime-box {
+            border: 1px solid #ddd;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .coordinates-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .coordinates-group input {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="iphForm2">
+            <!-- SECCIÓN 2 -->
+            <div class="section">
+                <div class="section-title">SECCIÓN 2. PRIMER RESPONDIENTE</div>
+                
+                <!-- Apartado 2.1 -->
+                <div class="subsection-title">Apartado 2.1 Datos de identificación</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido</label>
+                        <input type="text" name="pr_primer_apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido</label>
+                        <input type="text" name="pr_segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s)</label>
+                        <input type="text" name="pr_nombres" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Cuál es su grado o cargo?</label>
+                        <input type="text" name="pr_cargo">
+                    </div>
+                </div>
+                
+                <div class="subsection-title">Seleccione con una "X" la institución a la que pertenece, así como la entidad federativa o municipio de adscripción.</div>
+                
+                <div class="institution-grid">
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="inst_policia_municipal" id="inst_pm">
+                        <label for="inst_pm">Policía Municipal</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="inst_policia_estatal" id="inst_pe">
+                        <label for="inst_pe">Policía Estatal</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="inst_policia_ministerial" id="inst_pmin">
+                        <label for="inst_pmin">Policía Ministerial</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="inst_policia_fed_ministerial" id="inst_pfm">
+                        <label for="inst_pfm">Policía Federal Ministerial</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="inst_guardia_nacional" id="inst_gn">
+                        <label for="inst_gn">Guardia Nacional</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="inst_policia_mando_unico" id="inst_pmu">
+                        <label for="inst_pmu">Policía Mando Único</label>
+                    </div>
+                </div>
+                
+                <div class="form-row" style="margin-top: 15px;">
+                    <div class="form-group full">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="inst_otra" id="inst_otra">
+                            <label for="inst_otra">Otra autoridad:</label>
+                            <input type="text" name="inst_otra_cual" class="inline-input">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿En qué unidad arribó al lugar de la intervención?</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" name="unidad_arribo" style="flex: 1;">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="unidad_no_aplica" id="unidad_na">
+                                <label for="unidad_na">No aplica</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Arribó más de un elemento al lugar de la intervención?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="mas_elementos" value="si" id="elem_si">
+                                <label for="elem_si">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="mas_elementos" value="no" id="elem_no">
+                                <label for="elem_no">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group small">
+                        <label>¿Cuántos?</label>
+                        <input type="number" name="cantidad_elementos" min="0" placeholder="(001,002,…,010,…,)">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN 3 -->
+            <div class="section">
+                <div class="section-title">SECCIÓN 3. CONOCIMIENTO DEL HECHO Y SEGUIMIENTO DE LA ACTUACIÓN DE LA AUTORIDAD</div>
+                
+                <!-- Apartado 3.1 -->
+                <div class="subsection-title">Apartado 3.1 Conocimiento del hecho por el primer respondiente</div>
+                
+                <div class="form-group full">
+                    <label>¿Cómo se enteró del hecho?</label>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="conocimiento_denuncia" id="con_denuncia">
+                            <label for="con_denuncia">Denuncia</label>
+                        </div>
+                        
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="conocimiento_flagrancia" id="con_flag">
+                            <label for="con_flag">Flagrancia</label>
+                        </div>
+                        
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="conocimiento_localizacion" id="con_local">
+                            <label for="con_local">Localización</label>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="conocimiento_emergencia" id="con_emerg">
+                            <label for="con_emerg">Llamada de emergencia</label>
+                        </div>
+                        
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="conocimiento_descubrimiento" id="con_desc">
+                            <label for="con_desc">Descubrimiento</label>
+                        </div>
+                        
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="conocimiento_aportacion" id="con_aport">
+                            <label for="con_aport">Aportación</label>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="conocimiento_mandamiento" id="con_mand">
+                            <label for="con_mand">Mandamiento judicial</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row" style="margin-top: 15px;">
+                    <div class="form-group">
+                        <label>911</label>
+                        <input type="text" name="numero_911">
+                        <div class="note">No. Sólo en caso de contar con él.</div>
+                    </div>
+                </div>
+                
+                <!-- Apartado 3.2 -->
+                <div class="subsection-title" style="margin-top: 30px;">Apartado 3.2 Seguimiento de la actuación de la autoridad</div>
+                <p style="font-size: 12px; color: #666; margin-bottom: 15px;">Indique la fecha y hora en cada recuadro.</p>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="datetime-box">
+                            <strong style="display: block; margin-bottom: 10px;">Conocimiento del hecho</strong>
+                            <label>Fecha:</label>
+                            <input type="date" name="conocimiento_fecha">
+                            <label style="margin-top: 10px;">Hora: (24 horas)</label>
+                            <input type="time" name="conocimiento_hora">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="datetime-box">
+                            <strong style="display: block; margin-bottom: 10px;">Arribo al lugar</strong>
+                            <label>Fecha:</label>
+                            <input type="date" name="arribo_fecha">
+                            <label style="margin-top: 10px;">Hora: (24 horas)</label>
+                            <input type="time" name="arribo_hora">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN 4 -->
+            <div class="section">
+                <div class="section-title">SECCIÓN 4. LUGAR DE LA INTERVENCIÓN</div>
+                
+                <!-- Apartado 4.1 -->
+                <div class="subsection-title">Apartado 4.1 Ubicación geográfica</div>
+                
+                <div class="form-row">
+                    <div class="form-group" style="flex: 2;">
+                        <label>Calle/Tramo carretero:</label>
+                        <input type="text" name="lugar_calle">
+                    </div>
+                    <div class="form-group small">
+                        <label>No. exterior:</label>
+                        <input type="text" name="lugar_num_exterior">
+                    </div>
+                    <div class="form-group small">
+                        <label>No. interior:</label>
+                        <input type="text" name="lugar_num_interior">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Código Postal:</label>
+                        <input type="text" name="lugar_codigo_postal" maxlength="5">
+                    </div>
+                    <div class="form-group">
+                        <label>Colonia/Localidad:</label>
+                        <input type="text" name="lugar_colonia">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Municipio/Demarcación territorial:</label>
+                        <input type="text" name="lugar_municipio">
+                    </div>
+                    <div class="form-group">
+                        <label>Entidad federativa:</label>
+                        <input type="text" name="lugar_entidad_federativa">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Referencias:</label>
+                        <textarea name="lugar_referencias" rows="3" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
+                    </div>
+                </div>
+                
+                <div class="subsection-title">Anote las coordenadas geográficas.</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Latitud:</label>
+                        <div class="coordinates-group">
+                            <input type="text" name="latitud_grados" placeholder="Grados">
+                            <span>.</span>
+                            <input type="text" name="latitud_decimales" placeholder="Decimales">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Longitud:</label>
+                        <div class="coordinates-group">
+                            <input type="text" name="longitud_grados" placeholder="Grados">
+                            <span>.</span>
+                            <input type="text" name="longitud_decimales" placeholder="Decimales">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-footer">
+                Página 2 de 4
+            </div>
+            
+            <button type="submit">Guardar Formulario</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('iphForm2').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del IPH - Página 2:', data);
+            alert('Formulario guardado. Revisa la consola para ver los datos.');
+        });
+    </script>
+</body>
+</html>

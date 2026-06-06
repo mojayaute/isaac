@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Detención - Anexo A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.small {
+            min-width: 100px;
+            flex: 0.5;
+        }
+        
+        .form-group.full {
+            flex: 1 1 100%;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .inline-input {
+            display: inline-block;
+            width: 150px;
+            margin-left: 10px;
+        }
+        
+        .note {
+            font-size: 11px;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .datetime-group {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        
+        .datetime-group .form-group {
+            flex: 1;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ANEXO A. DETENCIÓN(ES)</h1>
+        <p style="text-align: center; margin-bottom: 20px; font-size: 13px;">
+            Llene este Anexo por cada persona detenida.
+        </p>
+        
+        <form id="detencionForm">
+            <!-- Apartado A.1 -->
+            <div class="section">
+                <div class="section-title">Apartado A.1 Fecha y hora de la detención</div>
+                <p style="margin-bottom: 15px; font-size: 13px;">Indique la fecha y la hora en que realizó la detención.</p>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha:</label>
+                        <input type="date" name="fecha_detencion" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hora: (24 horas)</label>
+                        <input type="time" name="hora_detencion" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Número de detención (RND): *</label>
+                        <input type="text" name="numero_detencion" placeholder="(001, 002,…, 010,…,)">
+                        <div class="note">*Sexto transitorio de la Ley Nacional del Registro de Detenciones</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado A.2 -->
+            <div class="section">
+                <div class="section-title">Apartado A.2 Datos generales de la persona detenida</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido</label>
+                        <input type="text" name="primer_apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido</label>
+                        <input type="text" name="segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s)</label>
+                        <input type="text" name="nombres" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Apodo o alias:</label>
+                        <input type="text" name="apodo">
+                    </div>
+                    <div class="form-group small">
+                        <label>Edad:</label>
+                        <input type="text" name="edad">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nacionalidad:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="nacionalidad" value="mexicana" id="nac_mex">
+                                <label for="nac_mex" style="margin: 0;">Mexicana</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="nacionalidad" value="extranjera" id="nac_ext">
+                                <label for="nac_ext" style="margin: 0;">Extranjera</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Sexo:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="sexo" value="mujer" id="sexo_mujer">
+                                <label for="sexo_mujer" style="margin: 0;">Mujer</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="sexo" value="hombre" id="sexo_hombre">
+                                <label for="sexo_hombre" style="margin: 0;">Hombre</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha de nacimiento:</label>
+                        <input type="date" name="fecha_nacimiento">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Se identificó con algún documento?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="doc_credencial" id="doc_cred">
+                                <label for="doc_cred" style="margin: 0;">Credencial INE</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="doc_licencia" id="doc_lic">
+                                <label for="doc_lic" style="margin: 0;">Licencia</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="doc_pasaporte" id="doc_pas">
+                                <label for="doc_pas" style="margin: 0;">Pasaporte</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="doc_otro" id="doc_otro">
+                                <label for="doc_otro" style="margin: 0;">Otro:</label>
+                                <input type="text" name="doc_otro_cual" class="inline-input">
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="doc_no" id="doc_no">
+                                <label for="doc_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>No. de identificación:</label>
+                        <input type="text" name="numero_identificacion">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Describa brevemente a la persona detenida, incluyendo tipo de vestimenta y rasgos visibles (barba, tatuajes, cicatrices, lunares, bigote, etcétera).</label>
+                        <textarea name="descripcion_persona"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>No. telefónico:</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="tel" name="telefono" style="flex: 1;">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="telefono_no_proporcionado" id="tel_no">
+                                <label for="tel_no" style="margin: 0;">No proporcionado</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Domicilio -->
+                <div style="margin-top: 20px;">
+                    <strong style="display: block; margin-bottom: 10px;">Domicilio de la persona detenida</strong>
+                    
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 2;">
+                            <label>Calle/Tramo carretero:</label>
+                            <input type="text" name="calle">
+                        </div>
+                        <div class="form-group small">
+                            <label>No. exterior:</label>
+                            <input type="text" name="num_exterior">
+                        </div>
+                        <div class="form-group small">
+                            <label>No. interior:</label>
+                            <input type="text" name="num_interior">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Código Postal:</label>
+                            <input type="text" name="codigo_postal" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label>Colonia/Localidad:</label>
+                            <input type="text" name="colonia">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Municipio/Demarcación territorial:</label>
+                            <input type="text" name="municipio">
+                        </div>
+                        <div class="form-group">
+                            <label>Entidad federativa:</label>
+                            <input type="text" name="entidad_federativa">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>Referencias:</label>
+                            <textarea name="referencias" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Preguntas adicionales -->
+                <div style="margin-top: 20px;">
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>¿La persona detenida presenta lesiones visibles?</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="radio" name="lesiones" value="si" id="lesiones_si">
+                                    <label for="lesiones_si" style="margin: 0;">Sí</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" name="lesiones" value="no" id="lesiones_no">
+                                    <label for="lesiones_no" style="margin: 0;">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>¿Manifiesta tener algún padecimiento?</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="radio" name="padecimiento" value="si" id="padec_si">
+                                    <label for="padec_si" style="margin: 0;">Sí</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" name="padecimiento" value="no" id="padec_no">
+                                    <label for="padec_no" style="margin: 0;">No</label>
+                                </div>
+                                <label style="margin-left: 10px;">¿Cuál?</label>
+                                <input type="text" name="padecimiento_cual" class="inline-input">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>¿La persona detenida se identificó como miembro de algún grupo vulnerable?</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="radio" name="grupo_vulnerable" value="si" id="vuln_si">
+                                    <label for="vuln_si" style="margin: 0;">Sí</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" name="grupo_vulnerable" value="no" id="vuln_no">
+                                    <label for="vuln_no" style="margin: 0;">No</label>
+                                </div>
+                                <label style="margin-left: 10px;">¿Cuál?</label>
+                                <input type="text" name="grupo_vulnerable_cual" class="inline-input">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>¿La persona detenida se identificó como integrante de algún grupo delictivo?</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="radio" name="grupo_delictivo" value="si" id="delic_si">
+                                    <label for="delic_si" style="margin: 0;">Sí</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" name="grupo_delictivo" value="no" id="delic_no">
+                                    <label for="delic_no" style="margin: 0;">No</label>
+                                </div>
+                                <label style="margin-left: 10px;">¿Cuál?</label>
+                                <input type="text" name="grupo_delictivo_cual" class="inline-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado A.3 -->
+            <div class="section">
+                <div class="section-title">Apartado A.3 Datos del familiar o persona de confianza señalado por la persona detenida</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido</label>
+                        <input type="text" name="fam_primer_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido</label>
+                        <input type="text" name="fam_segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s)</label>
+                        <input type="text" name="fam_nombres">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>No. telefónico:</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="tel" name="fam_telefono" style="flex: 1;">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="fam_telefono_no_proporcionado" id="fam_tel_no">
+                                <label for="fam_tel_no" style="margin: 0;">No proporcionado</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit">Guardar Formulario</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('detencionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del formulario:', data);
+            alert('Formulario guardado. Revisa la consola para ver los datos.');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe Policial Homologado (IPH2019)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #333;
+        }
+        
+        .header h1 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 20px;
+        }
+        
+        .header .subtitle {
+            font-size: 16px;
+            font-weight: bold;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .reference-box {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 2px solid #333;
+        }
+        
+        .reference-item {
+            flex: 1;
+        }
+        
+        .reference-item label {
+            display: block;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .reference-item input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: -20px -20px 15px -20px;
+        }
+        
+        .subsection-title {
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.small {
+            min-width: 100px;
+            flex: 0.5;
+        }
+        
+        .form-group.full {
+            flex: 1 1 100%;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .checkbox-item label {
+            margin: 0;
+        }
+        
+        .annexes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .annex-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .annex-item input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+        
+        .annex-item input[type="number"] {
+            width: 60px;
+            padding: 5px;
+        }
+        
+        .annex-item label {
+            flex: 1;
+            margin: 0;
+            font-size: 12px;
+        }
+        
+        .signature-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 15px;
+            background-color: #f9f9f9;
+            min-height: 80px;
+        }
+        
+        .signature-box label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .seal-box {
+            border: 2px dashed #999;
+            padding: 20px;
+            margin-top: 15px;
+            text-align: center;
+            background-color: #fafafa;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .seal-box label {
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .page-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #333;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .inline-input {
+            display: inline-block;
+            width: 200px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>INFORME POLICIAL HOMOLOGADO (IPH2019)</h1>
+            <div class="subtitle">HECHO PROBABLEMENTE DELICTIVO</div>
+        </div>
+        
+        <div class="reference-box">
+            <div class="reference-item">
+                <label>SISTEMA NACIONAL DE SEGURIDAD PÚBLICA</label>
+                <label style="margin-top: 5px;">NO. DE REFERENCIA</label>
+                <div style="display: flex; gap: 5px; margin-top: 5px;">
+                    <input type="text" name="ref_edo" placeholder="EDO" maxlength="3" style="width: 60px;">
+                    <input type="text" name="ref_inst" placeholder="INST" maxlength="4" style="width: 70px;">
+                    <input type="text" name="ref_gob" placeholder="GOB" maxlength="3" style="width: 60px;">
+                    <input type="text" name="ref_mpio" placeholder="MPIO" maxlength="4" style="width: 70px;">
+                    <input type="text" name="ref_cnsp" placeholder="CNSP" style="flex: 1;">
+                </div>
+            </div>
+            <div class="reference-item">
+                <label>NO. DE FOLIO ASIGNADO POR EL SISTEMA</label>
+                <input type="text" name="folio_sistema" style="margin-top: 20px;">
+            </div>
+        </div>
+        
+        <form id="iphForm">
+            <!-- SECCIÓN 1 -->
+            <div class="section">
+                <div class="section-title">SECCIÓN 1. PUESTA A DISPOSICIÓN</div>
+                
+                <!-- Apartado 1.1 -->
+                <div class="subsection-title">Apartado 1.1 Fecha y hora de la puesta a disposición</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha:</label>
+                        <input type="date" name="fecha_disposicion" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hora: (24 horas)</label>
+                        <input type="time" name="hora_disposicion" required>
+                    </div>
+                    <div class="form-group">
+                        <label>No. expediente:</label>
+                        <input type="text" name="num_expediente">
+                    </div>
+                </div>
+                
+                <!-- Datos de quien realiza la puesta a disposición -->
+                <div class="subsection-title">Datos de quien realiza la puesta a disposición</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido:</label>
+                        <input type="text" name="disp_primer_apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido:</label>
+                        <input type="text" name="disp_segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s):</label>
+                        <input type="text" name="disp_nombres" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Adscripción:</label>
+                        <input type="text" name="disp_adscripcion">
+                    </div>
+                    <div class="form-group">
+                        <label>Cargo/grado:</label>
+                        <input type="text" name="disp_cargo">
+                    </div>
+                </div>
+                
+                <div class="signature-box">
+                    <label>Firma:</label>
+                    <div style="font-size: 12px; color: #999; text-align: center; margin-top: 20px;">
+                        [Espacio para firma]
+                    </div>
+                </div>
+                
+                <!-- Fiscal/Autoridad que recibe -->
+                <div class="subsection-title">Fiscal/Autoridad que recibe la puesta a disposición</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido:</label>
+                        <input type="text" name="fiscal_primer_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido:</label>
+                        <input type="text" name="fiscal_segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s):</label>
+                        <input type="text" name="fiscal_nombres">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fiscalía/Autoridad:</label>
+                        <input type="text" name="fiscal_fiscalia">
+                    </div>
+                    <div class="form-group">
+                        <label>Adscripción:</label>
+                        <input type="text" name="fiscal_adscripcion">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Cargo:</label>
+                        <input type="text" name="fiscal_cargo">
+                    </div>
+                </div>
+                
+                <div class="signature-box">
+                    <label>Firma:</label>
+                    <div style="font-size: 12px; color: #999; text-align: center; margin-top: 20px;">
+                        [Espacio para firma]
+                    </div>
+                </div>
+                
+                <div class="seal-box">
+                    <label>Sello de la institución/autoridad que recibe el formato IPH</label>
+                </div>
+                
+                <!-- Anexos -->
+                <div class="subsection-title" style="margin-top: 30px;">
+                    Señale con una "X" el o los Anexos entregados e indique la cantidad de cada uno de ellos (sólo entregue los Anexos utilizados).
+                </div>
+                
+                <div class="annexes-grid">
+                    <div class="annex-item">
+                        <input type="checkbox" name="anexo_a" id="anexo_a">
+                        <label for="anexo_a">Anexo A. Detención(es)</label>
+                        <input type="number" name="anexo_a_cant" min="0" placeholder="Cant.">
+                    </div>
+                    
+                    <div class="annex-item">
+                        <input type="checkbox" name="anexo_b" id="anexo_b">
+                        <label for="anexo_b">Anexo B. Informe del uso de la fuerza</label>
+                        <input type="number" name="anexo_b_cant" min="0" placeholder="Cant.">
+                    </div>
+                    
+                    <div class="annex-item">
+                        <input type="checkbox" name="anexo_c" id="anexo_c">
+                        <label for="anexo_c">Anexo C. Inspección de vehículo</label>
+                        <input type="number" name="anexo_c_cant" min="0" placeholder="Cant.">
+                    </div>
+                    
+                    <div class="annex-item">
+                        <input type="checkbox" name="anexo_d" id="anexo_d">
+                        <label for="anexo_d">Anexo D. Inventario de armas y objetos</label>
+                        <input type="number" name="anexo_d_cant" min="0" placeholder="Cant.">
+                    </div>
+                    
+                    <div class="annex-item">
+                        <input type="checkbox" name="anexo_e" id="anexo_e">
+                        <label for="anexo_e">Anexo E. Entrevistas</label>
+                        <input type="number" name="anexo_e_cant" min="0" placeholder="Cant.">
+                    </div>
+                    
+                    <div class="annex-item">
+                        <input type="checkbox" name="anexo_f" id="anexo_f">
+                        <label for="anexo_f">Anexo F. Entrega-recepción del lugar de la intervención</label>
+                        <input type="number" name="anexo_f_cant" min="0" placeholder="Cant.">
+                    </div>
+                    
+                    <div class="annex-item">
+                        <input type="checkbox" name="anexo_g" id="anexo_g">
+                        <label for="anexo_g">Anexo G. Continuación de la narrativa de los hechos y/o entrevista</label>
+                        <input type="number" name="anexo_g_cant" min="0" placeholder="Cant.">
+                    </div>
+                    
+                    <div class="annex-item">
+                        <input type="checkbox" name="no_anexos" id="no_anexos">
+                        <label for="no_anexos">No se entregan Anexos</label>
+                    </div>
+                </div>
+                
+                <!-- Documentación complementaria -->
+                <div class="subsection-title" style="margin-top: 30px;">¿Anexa documentación complementaria?</div>
+                <p style="font-size: 12px; color: #666; margin-bottom: 10px;">(Señale con una "X" el tipo de documentación)</p>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="radio" name="doc_complementaria" value="si" id="doc_si">
+                        <label for="doc_si">Sí</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="doc_complementaria" value="no" id="doc_no">
+                        <label for="doc_no">No</label>
+                    </div>
+                </div>
+                
+                <div class="checkbox-group" style="margin-top: 15px;">
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="doc_fotografias" id="doc_fotos">
+                        <label for="doc_fotos">Fotografías</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="doc_audio" id="doc_audio">
+                        <label for="doc_audio">Audio</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="doc_videos" id="doc_videos">
+                        <label for="doc_videos">Videos</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="doc_certificados" id="doc_cert">
+                        <label for="doc_cert">Certificados médicos</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="doc_otra" id="doc_otra">
+                        <label for="doc_otra">Otra</label>
+                    </div>
+                </div>
+                
+                <div class="form-row" style="margin-top: 10px;">
+                    <div class="form-group full">
+                        <label>(¿Cuál?)</label>
+                        <input type="text" name="doc_otra_cual">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-footer">
+                Página 1 de 4
+            </div>
+            
+            <button type="submit">Guardar Formulario</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('iphForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del IPH:', data);
+            alert('Formulario guardado. Revisa la consola para ver los datos.');
+        });
+        
+        // Deshabilitar otros anexos si se selecciona "No se entregan Anexos"
+        document.getElementById('no_anexos').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.annex-item input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                if (cb.id !== 'no_anexos') {
+                    cb.disabled = this.checked;
+                    if (this.checked) cb.checked = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

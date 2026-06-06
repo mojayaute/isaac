@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo G - Continuación de la Narrativa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 22px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.small {
+            min-width: 100px;
+            flex: 0.5;
+        }
+        
+        .form-group.full {
+            flex: 1 1 100%;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 400px;
+            line-height: 1.6;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .signature-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            min-height: 80px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .signature-box label {
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            flex-wrap: wrap;
+        }
+        
+        .toolbar button {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            background-color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .toolbar button:hover {
+            background-color: #e9ecef;
+        }
+        
+        .char-counter {
+            text-align: right;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .page-info {
+            background-color: #e7f3ff;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ANEXO G. CONTINUACIÓN DE LA NARRATIVA DE LOS HECHOS Y/O ENTREVISTA</h1>
+        
+        <form id="anexoGForm">
+            <div class="page-info">
+                <div class="form-row">
+                    <div class="form-group small">
+                        <label>Página:</label>
+                        <input type="number" name="numero_pagina" min="1" value="1" required>
+                    </div>
+                    <div class="form-group small">
+                        <label>de:</label>
+                        <input type="number" name="total_paginas" min="1" value="1" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label><strong>Continuación de la narrativa de:</strong></label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="tipo_continuacion" value="hechos" id="tipo_hechos" required>
+                                <label for="tipo_hechos" style="margin: 0;">Hechos</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="tipo_continuacion" value="entrevista" id="tipo_entrevista">
+                                <label for="tipo_entrevista" style="margin: 0;">Entrevista</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="toolbar">
+                    <button type="button" onclick="insertText('P: ')">❓ Pregunta</button>
+                    <button type="button" onclick="insertText('R: ')">💬 Respuesta</button>
+                    <button type="button" onclick="insertText('¿Quién? ')">👤 Quién</button>
+                    <button type="button" onclick="insertText('¿Qué? ')">📋 Qué</button>
+                    <button type="button" onclick="insertText('¿Cómo? ')">❓ Cómo</button>
+                    <button type="button" onclick="insertText('¿Cuándo? ')">🕐 Cuándo</button>
+                    <button type="button" onclick="insertText('¿Dónde? ')">📍 Dónde</button>
+                    <button type="button" onclick="insertTimestamp()">⏰ Insertar hora</button>
+                    <button type="button" onclick="clearNarrativa()">🗑️ Limpiar</button>
+                </div>
+                
+                <textarea 
+                    id="narrativa" 
+                    name="continuacion_narrativa" 
+                    placeholder="Continúe aquí la narrativa de los hechos o de la entrevista...
+
+Para Hechos, considere:
+- ¿Quién? (personas involucradas)
+- ¿Qué? (hechos ocurridos)
+- ¿Cómo? (circunstancias)
+- ¿Cuándo? (tiempo)
+- ¿Dónde? (lugar)
+
+Para Entrevista, use formato:
+P: [Pregunta realizada]
+R: [Respuesta del entrevistado]
+
+Mantenga el orden cronológico y sea claro y preciso en la narración."
+                    required></textarea>
+                
+                <div class="char-counter">
+                    <span id="charCount">0</span> caracteres
+                </div>
+            </div>
+            
+            <div class="section">
+                <strong style="display: block; margin-bottom: 15px;">Datos del primer respondiente que realizó la narración de los hechos y/o entrevista, sólo si es diferente a quien firmó la puesta a disposición</strong>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido</label>
+                        <input type="text" name="resp_primer_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido</label>
+                        <input type="text" name="resp_segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s)</label>
+                        <input type="text" name="resp_nombres">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Adscripción:</label>
+                        <input type="text" name="resp_adscripcion">
+                    </div>
+                    <div class="form-group">
+                        <label>Cargo/grado:</label>
+                        <input type="text" name="resp_cargo">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Firma:</label>
+                        <div class="signature-box">
+                            <label style="color: #999; font-weight: normal;">[Espacio para firma]</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit">💾 Guardar Formulario</button>
+        </form>
+    </div>
+    
+    <script>
+        const narrativa = document.getElementById('narrativa');
+        const charCount = document.getElementById('charCount');
+        
+        // Contador de caracteres
+        narrativa.addEventListener('input', function() {
+            charCount.textContent = this.value.length.toLocaleString();
+        });
+        
+        // Función para insertar texto en la posición del cursor
+        function insertText(text) {
+            const start = narrativa.selectionStart;
+            const end = narrativa.selectionEnd;
+            const value = narrativa.value;
+            
+            narrativa.value = value.substring(0, start) + text + value.substring(end);
+            narrativa.focus();
+            narrativa.selectionStart = narrativa.selectionEnd = start + text.length;
+            
+            // Actualizar contador
+            charCount.textContent = narrativa.value.length.toLocaleString();
+        }
+        
+        // Función para insertar timestamp
+        function insertTimestamp() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+            
+            const timestamp = `[${day}/${month}/${year} - ${hours}:${minutes}] `;
+            insertText(timestamp);
+        }
+        
+        // Función para limpiar narrativa
+        function clearNarrativa() {
+            if (confirm('¿Está seguro de que desea limpiar toda la narrativa?')) {
+                narrativa.value = '';
+                charCount.textContent = '0';
+                narrativa.focus();
+            }
+        }
+        
+        // Auto-guardado en localStorage
+        narrativa.addEventListener('input', function() {
+            const pageNum = document.querySelector('input[name="numero_pagina"]').value;
+            localStorage.setItem(`anexo_g_borrador_p${pageNum}`, this.value);
+        });
+        
+        // Recuperar borrador al cargar
+        window.addEventListener('load', function() {
+            const pageNum = document.querySelector('input[name="numero_pagina"]').value;
+            const borrador = localStorage.getItem(`anexo_g_borrador_p${pageNum}`);
+            if (borrador && borrador.length > 0) {
+                if (confirm('Se encontró un borrador guardado. ¿Desea recuperarlo?')) {
+                    narrativa.value = borrador;
+                    charCount.textContent = borrador.length.toLocaleString();
+                }
+            }
+        });
+        
+        // Envío del formulario
+        document.getElementById('anexoGForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del formulario:', data);
+            
+            // Limpiar borrador después de guardar
+            const pageNum = document.querySelector('input[name="numero_pagina"]').value;
+            if (confirm('Formulario guardado exitosamente. ¿Desea limpiar el borrador guardado automáticamente?')) {
+                localStorage.removeItem(`anexo_g_borrador_p${pageNum}`);
+            }
+            
+            alert('Formulario guardado. Revisa la consola para ver los datos.');
+        });
+        
+        // Advertencia antes de salir si hay texto sin guardar
+        window.addEventListener('beforeunload', function(e) {
+            if (narrativa.value.length > 0) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

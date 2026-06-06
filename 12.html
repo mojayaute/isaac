@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo E - Entrevistas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.small {
+            min-width: 100px;
+            flex: 0.5;
+        }
+        
+        .form-group.full {
+            flex: 1 1 100%;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 200px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .inline-input {
+            display: inline-block;
+            width: 200px;
+            margin-left: 10px;
+        }
+        
+        .note {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 12px;
+            color: #0c5460;
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 12px;
+            font-weight: bold;
+            color: #856404;
+        }
+        
+        .signature-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 15px;
+            background-color: #f9f9f9;
+            min-height: 100px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .signature-box label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            flex-wrap: wrap;
+        }
+        
+        .toolbar button {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            background-color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .toolbar button:hover {
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ANEXO E. ENTREVISTAS</h1>
+        <p class="subtitle">Llene este Anexo por cada persona entrevistada.</p>
+        
+        <form id="entrevistaForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Persona entrevistada: (001, 002,…, 010,…,)</label>
+                    <input type="text" name="numero_entrevista" placeholder="Ej: 001" required>
+                </div>
+                <div class="form-group">
+                    <label>¿Desea reservar sus datos?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" name="reserva_datos" value="si" id="reserva_si">
+                            <label for="reserva_si" style="margin: 0;">Sí</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" name="reserva_datos" value="no" id="reserva_no">
+                            <label for="reserva_no" style="margin: 0;">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado E.1 -->
+            <div class="section">
+                <div class="section-title">Apartado E.1 Fecha y hora del lugar de la entrevista</div>
+                <p style="margin-bottom: 15px; font-size: 13px;">Indique la fecha y la hora en que realizó la entrevista.</p>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha:</label>
+                        <input type="date" name="fecha_entrevista" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hora: (24 horas)</label>
+                        <input type="time" name="hora_entrevista" required>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado E.2 -->
+            <div class="section">
+                <div class="section-title">Apartado E.2 Datos generales</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido</label>
+                        <input type="text" name="primer_apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido</label>
+                        <input type="text" name="segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s)</label>
+                        <input type="text" name="nombres" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Calidad (Indique según corresponda):</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="calidad" value="victima" id="cal_victima" required>
+                                <label for="cal_victima" style="margin: 0;">Víctima u ofendido</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="calidad" value="denunciante" id="cal_denunciante">
+                                <label for="cal_denunciante" style="margin: 0;">Denunciante</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="calidad" value="testigo" id="cal_testigo">
+                                <label for="cal_testigo" style="margin: 0;">Testigo</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nacionalidad:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="nacionalidad" value="mexicana" id="nac_mex" required>
+                                <label for="nac_mex" style="margin: 0;">Mexicana</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="nacionalidad" value="extranjera" id="nac_ext">
+                                <label for="nac_ext" style="margin: 0;">Extranjera</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Sexo:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="sexo" value="mujer" id="sexo_mujer" required>
+                                <label for="sexo_mujer" style="margin: 0;">Mujer</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="sexo" value="hombre" id="sexo_hombre">
+                                <label for="sexo_hombre" style="margin: 0;">Hombre</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha de nacimiento:</label>
+                        <input type="date" name="fecha_nacimiento">
+                    </div>
+                    <div class="form-group small">
+                        <label>Edad:</label>
+                        <input type="text" name="edad">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Se identificó con algún documento?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="doc_credencial" id="doc_cred">
+                                <label for="doc_cred" style="margin: 0;">Credencial INE</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="doc_licencia" id="doc_lic">
+                                <label for="doc_lic" style="margin: 0;">Licencia</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="doc_pasaporte" id="doc_pas">
+                                <label for="doc_pas" style="margin: 0;">Pasaporte</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="doc_otro" id="doc_otro">
+                                <label for="doc_otro" style="margin: 0;">Otro:</label>
+                                <input type="text" name="doc_otro_cual" class="inline-input">
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="doc_no" id="doc_no">
+                                <label for="doc_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>No. de identificación:</label>
+                        <input type="text" name="numero_identificacion">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>No. telefónico:</label>
+                        <input type="tel" name="telefono">
+                    </div>
+                    <div class="form-group">
+                        <label>Correo electrónico:</label>
+                        <input type="email" name="correo">
+                    </div>
+                </div>
+                
+                <!-- Domicilio -->
+                <div style="margin-top: 20px;">
+                    <strong style="display: block; margin-bottom: 10px;">Domicilio de la persona entrevistada</strong>
+                    
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 2;">
+                            <label>Calle/Tramo carretero:</label>
+                            <input type="text" name="calle">
+                        </div>
+                        <div class="form-group small">
+                            <label>No. exterior:</label>
+                            <input type="text" name="num_exterior">
+                        </div>
+                        <div class="form-group small">
+                            <label>No. interior:</label>
+                            <input type="text" name="num_interior">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Código Postal:</label>
+                            <input type="text" name="codigo_postal" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label>Colonia/Localidad:</label>
+                            <input type="text" name="colonia">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Municipio/Demarcación territorial:</label>
+                            <input type="text" name="municipio">
+                        </div>
+                        <div class="form-group">
+                            <label>Entidad federativa:</label>
+                            <input type="text" name="entidad_federativa">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>Referencias:</label>
+                            <textarea name="referencias" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado E.3 -->
+            <div class="section">
+                <div class="section-title">Apartado E.3 Relato de la entrevista</div>
+                
+                <div class="warning">
+                    Comunique al entrevistado la facultad de abstención que le otorga el artículo 361 del Código Nacional de Procedimientos Penales
+                </div>
+                
+                <div class="toolbar">
+                    <button type="button" onclick="insertText('P: ')">❓ Pregunta</button>
+                    <button type="button" onclick="insertText('R: ')">💬 Respuesta</button>
+                    <button type="button" onclick="insertTimestamp()">⏰ Insertar hora</button>
+                    <button type="button" onclick="clearRelato()">🗑️ Limpiar</button>
+                </div>
+                
+                <textarea 
+                    id="relato" 
+                    name="relato_entrevista" 
+                    placeholder="Escriba aquí el relato de la entrevista...
+
+Ejemplo de estructura:
+
+[Hora] Inicio de entrevista
+Se le informó al entrevistado sobre la facultad de abstención que le otorga el artículo 361 del CNPP.
+
+P: ¿Puede indicar qué ocurrió el día de los hechos?
+R: [Respuesta del entrevistado]
+
+P: ¿A qué hora sucedió?
+R: [Respuesta del entrevistado]
+
+P: ¿Puede describir...?
+R: [Respuesta del entrevistado]
+
+[Hora] Fin de entrevista
+El entrevistado manifestó que no tiene más que agregar."
+                    required></textarea>
+                
+                <div class="note">
+                    <strong>Nota:</strong> De ser el caso continúe la narración de la entrevista en el Anexo G (Continuación de la narrativa de los hechos y/o entrevista).
+                </div>
+                
+                <div class="signature-box">
+                    <label>Firma/Huella de la persona entrevistada</label>
+                    <div style="margin-top: 30px; font-size: 12px; color: #999;">
+                        [Espacio para firma o huella digital]
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit">Guardar Formulario</button>
+        </form>
+    </div>
+    
+    <script>
+        const relato = document.getElementById('relato');
+        
+        // Función para insertar texto en la posición del cursor
+        function insertText(text) {
+            const start = relato.selectionStart;
+            const end = relato.selectionEnd;
+            const value = relato.value;
+            
+            relato.value = value.substring(0, start) + text + value.substring(end);
+            relato.focus();
+            relato.selectionStart = relato.selectionEnd = start + text.length;
+        }
+        
+        // Función para insertar timestamp
+        function insertTimestamp() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            
+            const timestamp = `[${hours}:${minutes}] `;
+            insertText(timestamp);
+        }
+        
+        // Función para limpiar relato
+        function clearRelato() {
+            if (confirm('¿Está seguro de que desea limpiar todo el relato de la entrevista?')) {
+                relato.value = '';
+                relato.focus();
+            }
+        }
+        
+        // Auto-guardado en localStorage
+        relato.addEventListener('input', function() {
+            localStorage.setItem('entrevista_borrador', this.value);
+        });
+        
+        // Recuperar borrador al cargar
+        window.addEventListener('load', function() {
+            const borrador = localStorage.getItem('entrevista_borrador');
+            if (borrador && borrador.length > 0) {
+                if (confirm('Se encontró un borrador guardado de la entrevista. ¿Desea recuperarlo?')) {
+                    relato.value = borrador;
+                }
+            }
+        });
+        
+        // Envío del formulario
+        document.getElementById('entrevistaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del formulario:', data);
+            
+            // Limpiar borrador después de guardar
+            if (confirm('Formulario guardado exitosamente. ¿Desea limpiar el borrador guardado automáticamente?')) {
+                localStorage.removeItem('entrevista_borrador');
+            }
+            
+            alert('Formulario guardado. Revisa la consola para ver los datos.');
+        });
+        
+        // Advertencia antes de salir si hay texto sin guardar
+        window.addEventListener('beforeunload', function(e) {
+            if (relato.value.length > 0) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

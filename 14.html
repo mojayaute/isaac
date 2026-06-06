@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo F - Entrega-Recepción del Lugar de la Intervención</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 22px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.full {
+            flex: 1 1 100%;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .signature-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            min-height: 80px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .signature-box label {
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .persona-block {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .persona-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 10px 5px;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ANEXO F. ENTREGA - RECEPCIÓN DEL LUGAR DE LA INTERVENCIÓN</h1>
+        
+        <form id="anexoFForm">
+            <!-- Apartado F.1 -->
+            <div class="section">
+                <div class="section-title">Apartado F.1 Preservación del lugar de la intervención</div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Explique brevemente las acciones realizadas para la preservación del lugar de la intervención. (delimitación, acordonamiento, clausura en lugar cerrado, etc.)</label>
+                        <textarea name="acciones_preservacion" rows="5" placeholder="Describa las acciones realizadas, por ejemplo:
+- Delimitación del área con cinta preventiva
+- Acordonamiento del perímetro
+- Clausura de accesos
+- Establecimiento de punto de control
+- Otras medidas de preservación" required></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado F.2 -->
+            <div class="section">
+                <div class="section-title">Apartado F.2 Acciones realizadas después de la preservación</div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Solicitó apoyo de alguna autoridad o servicios especializados en el lugar de la intervención?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="solicito_apoyo" value="si" id="apoyo_si" required>
+                                <label for="apoyo_si" style="margin: 0;">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="solicito_apoyo" value="no" id="apoyo_no">
+                                <label for="apoyo_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Cuál?</label>
+                        <input type="text" name="apoyo_cual" placeholder="Especifique la autoridad o servicio especializado">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Después de la preservación del lugar de la intervención, ¿Ingresó alguna persona al lugar?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="ingreso_persona" value="si" id="ingreso_si" required>
+                                <label for="ingreso_si" style="margin: 0;">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="ingreso_persona" value="no" id="ingreso_no">
+                                <label for="ingreso_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Motivo del ingreso:</label>
+                        <textarea name="motivo_ingreso" rows="3" placeholder="Explique el motivo por el cual ingresó personal al lugar preservado"></textarea>
+                    </div>
+                </div>
+                
+                <strong style="display: block; margin: 20px 0 10px 0;">Datos del personal que ingresó al lugar de la intervención:</strong>
+                
+                <div id="personalContainer">
+                    <div class="persona-block" data-persona="1">
+                        <div class="persona-title">Persona 1</div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Primer apellido</label>
+                                <input type="text" name="pers_primer_apellido_1">
+                            </div>
+                            <div class="form-group">
+                                <label>Segundo apellido</label>
+                                <input type="text" name="pers_segundo_apellido_1">
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre(s)</label>
+                                <input type="text" name="pers_nombres_1">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Institución:</label>
+                                <input type="text" name="pers_institucion_1">
+                            </div>
+                            <div class="form-group">
+                                <label>Grado/Cargo:</label>
+                                <input type="text" name="pers_cargo_1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn-container">
+                    <button type="button" class="btn-success" onclick="agregarPersona()">➕ Agregar otra persona</button>
+                </div>
+                
+                <div class="form-row" style="margin-top: 20px;">
+                    <div class="form-group full">
+                        <label>Observaciones:</label>
+                        <textarea name="observaciones" rows="3" placeholder="Incluya cualquier observación adicional relevante"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado F.3 -->
+            <div class="section">
+                <div class="section-title">Apartado F.3 Entrega - recepción del lugar de la intervención</div>
+                
+                <strong style="display: block; margin-bottom: 15px;">Datos de la persona que entrega el lugar de la intervención:</strong>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido</label>
+                        <input type="text" name="entrega_primer_apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido</label>
+                        <input type="text" name="entrega_segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s)</label>
+                        <input type="text" name="entrega_nombres" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Institución:</label>
+                        <input type="text" name="entrega_institucion">
+                    </div>
+                    <div class="form-group">
+                        <label>Adscripción:</label>
+                        <input type="text" name="entrega_adscripcion">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Cargo/grado:</label>
+                        <input type="text" name="entrega_cargo">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Firma:</label>
+                        <div class="signature-box">
+                            <label style="color: #999; font-weight: normal;">[Espacio para firma]</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <strong style="display: block; margin: 30px 0 15px 0;">Datos de la persona que recibe el lugar de la intervención:</strong>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido</label>
+                        <input type="text" name="recibe_primer_apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido</label>
+                        <input type="text" name="recibe_segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s)</label>
+                        <input type="text" name="recibe_nombres" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Institución:</label>
+                        <input type="text" name="recibe_institucion">
+                    </div>
+                    <div class="form-group">
+                        <label>Adscripción:</label>
+                        <input type="text" name="recibe_adscripcion">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Cargo/grado:</label>
+                        <input type="text" name="recibe_cargo">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Firma:</label>
+                        <div class="signature-box">
+                            <label style="color: #999; font-weight: normal;">[Espacio para firma]</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado F.4 -->
+            <div class="section">
+                <div class="section-title">Apartado F.4 Fecha y hora de la entrega - recepción del lugar de la intervención</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha:</label>
+                        <input type="date" name="fecha_entrega" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hora: (24 horas)</label>
+                        <input type="time" name="hora_entrega" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn-container">
+                <button type="submit" class="btn-primary">💾 Guardar Formulario</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        let personaCounter = 1;
+        
+        function agregarPersona() {
+            personaCounter++;
+            const container = document.getElementById('personalContainer');
+            
+            const personaBlock = document.createElement('div');
+            personaBlock.className = 'persona-block';
+            personaBlock.setAttribute('data-persona', personaCounter);
+            
+            personaBlock.innerHTML = `
+                <div class="persona-title">Persona ${personaCounter}</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido</label>
+                        <input type="text" name="pers_primer_apellido_${personaCounter}">
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido</label>
+                        <input type="text" name="pers_segundo_apellido_${personaCounter}">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s)</label>
+                        <input type="text" name="pers_nombres_${personaCounter}">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Institución:</label>
+                        <input type="text" name="pers_institucion_${personaCounter}">
+                    </div>
+                    <div class="form-group">
+                        <label>Grado/Cargo:</label>
+                        <input type="text" name="pers_cargo_${personaCounter}">
+                    </div>
+                </div>
+                
+                <button type="button" class="btn-danger" onclick="eliminarPersona(${personaCounter})" style="margin-top: 10px;">🗑️ Eliminar</button>
+            `;
+            
+            container.appendChild(personaBlock);
+            personaBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        function eliminarPersona(numero) {
+            if (confirm('¿Está seguro de que desea eliminar esta persona?')) {
+                const personaBlock = document.querySelector(`[data-persona="${numero}"]`);
+                if (personaBlock) {
+                    personaBlock.remove();
+                }
+            }
+        }
+        
+        document.getElementById('anexoFForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del formulario:', data);
+            alert('Formulario guardado. Revisa la consola para ver los datos.');
+        });
+    </script>
+</body>
+</html>

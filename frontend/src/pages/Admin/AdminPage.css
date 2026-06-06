@@ -1,0 +1,107 @@
+.admin-page {
+  width: 100%;
+}
+
+.admin-page h1 {
+  margin: 0 0 2rem 0;
+  color: #2c3e50;
+}
+
+.users-table-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table thead {
+  background-color: #f8f9fa;
+}
+
+.users-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.users-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.users-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.role-badge.admin {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.role-badge.user {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-active {
+  color: #155724;
+  font-weight: 500;
+}
+
+.status-inactive {
+  color: #856404;
+  font-weight: 500;
+}
+
+.view-btn {
+  background-color: #667eea;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.view-btn:hover {
+  background-color: #5568d3;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #7f8c8d;
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #7f8c8d;
+}
+
+@media (max-width: 768px) {
+  .users-table {
+    font-size: 0.9rem;
+  }
+
+  .users-table th,
+  .users-table td {
+    padding: 0.75rem 0.5rem;
+  }
+}

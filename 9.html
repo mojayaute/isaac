@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo C - Inspección de Vehículo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.small {
+            min-width: 100px;
+            flex: 0.5;
+        }
+        
+        .form-group.full {
+            flex: 1 1 100%;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .note {
+            font-size: 11px;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .signature-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            min-height: 80px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .signature-box label {
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .divider {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+        }
+        
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ANEXO C. INSPECCIÓN DE VEHÍCULO</h1>
+        <p class="subtitle">Llene este Anexo por cada vehículo inspeccionado.</p>
+        
+        <form id="vehiculoForm">
+            <div class="form-row">
+                <div class="form-group full">
+                    <label>Vehículo: (001, 002,…, 010,…,)</label>
+                    <input type="text" name="numero_vehiculo" placeholder="Ej: 001" required>
+                </div>
+            </div>
+            
+            <!-- Apartado C.1 -->
+            <div class="section">
+                <div class="section-title">Apartado C.1 Fecha y hora de la inspección</div>
+                <p style="margin-bottom: 15px; font-size: 13px;">Indique la fecha y la hora en que realizó la inspección.</p>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha:</label>
+                        <input type="date" name="fecha_inspeccion" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hora: (24 horas)</label>
+                        <input type="time" name="hora_inspeccion" required>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado C.2 -->
+            <div class="section">
+                <div class="section-title">Apartado C.2 Datos generales del vehículo inspeccionado</div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Tipo:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="tipo_vehiculo" value="terrestre" id="tipo_terrestre" required>
+                                <label for="tipo_terrestre" style="margin: 0;">Terrestre</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="tipo_vehiculo" value="acuatico" id="tipo_acuatico">
+                                <label for="tipo_acuatico" style="margin: 0;">Acuático</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="tipo_vehiculo" value="aereo" id="tipo_aereo">
+                                <label for="tipo_aereo" style="margin: 0;">Aéreo</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Procedencia:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="procedencia" value="nacional" id="proc_nacional" required>
+                                <label for="proc_nacional" style="margin: 0;">Nacional</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="procedencia" value="extranjero" id="proc_extranjero">
+                                <label for="proc_extranjero" style="margin: 0;">Extranjero</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Uso:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="uso" value="particular" id="uso_particular" required>
+                                <label for="uso_particular" style="margin: 0;">Particular</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="uso" value="publico" id="uso_publico">
+                                <label for="uso_publico" style="margin: 0;">Transporte público</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="uso" value="carga" id="uso_carga">
+                                <label for="uso_carga" style="margin: 0;">Carga</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Placa/Matrícula:</label>
+                        <input type="text" name="placa">
+                    </div>
+                    <div class="form-group">
+                        <label>No. de serie:</label>
+                        <input type="text" name="numero_serie">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Marca:</label>
+                        <input type="text" name="marca">
+                    </div>
+                    <div class="form-group">
+                        <label>Submarca:</label>
+                        <input type="text" name="submarca">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Modelo:</label>
+                        <input type="text" name="modelo" placeholder="Ej: 2023">
+                    </div>
+                    <div class="form-group">
+                        <label>Color:</label>
+                        <input type="text" name="color">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Situación:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="situacion" value="robo" id="sit_robo" required>
+                                <label for="sit_robo" style="margin: 0;">Con reporte de robo</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="situacion" value="sin_robo" id="sit_sin_robo">
+                                <label for="sit_sin_robo" style="margin: 0;">Sin reporte de robo</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="situacion" value="no_posible" id="sit_no_posible">
+                                <label for="sit_no_posible" style="margin: 0;">No es posible saberlo</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Observaciones:</label>
+                        <textarea name="observaciones" rows="3" placeholder="Incluya cualquier detalle relevante sobre el vehículo (daños, características particulares, etc.)"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Destino que se le dio:</label>
+                        <input type="text" name="destino" placeholder="Ej: Trasladado a corralón oficial, quedó en custodia de...">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado C.3 -->
+            <div class="section">
+                <div class="section-title">Apartado C.3 Objetos encontrados en el vehículo inspeccionado</div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Encontró objetos relacionados con los hechos?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="objetos_encontrados" value="si" id="obj_si" required>
+                                <label for="obj_si" style="margin: 0;">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="objetos_encontrados" value="no" id="obj_no">
+                                <label for="obj_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                        <div class="note">Si respondió Sí, llene el Anexo D.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado C.4 -->
+            <div class="section">
+                <div class="section-title">Apartado C.4 Datos del primer respondiente que realizó la inspección, sólo si es diferente a quien firmó la puesta a disposición</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido</label>
+                        <input type="text" name="resp_primer_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido</label>
+                        <input type="text" name="resp_segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s)</label>
+                        <input type="text" name="resp_nombres">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Adscripción:</label>
+                        <input type="text" name="resp_adscripcion">
+                    </div>
+                    <div class="form-group">
+                        <label>Cargo/grado:</label>
+                        <input type="text" name="resp_cargo">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Firma:</label>
+                        <div class="signature-box">
+                            <label style="color: #999; font-weight: normal;">[Espacio para firma]</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Segundo respondiente (opcional) -->
+                <div class="divider">
+                    <strong style="display: block; margin-bottom: 15px; font-size: 14px;">Segundo respondiente (si aplica):</strong>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Primer apellido</label>
+                            <input type="text" name="resp2_primer_apellido">
+                        </div>
+                        <div class="form-group">
+                            <label>Segundo apellido</label>
+                            <input type="text" name="resp2_segundo_apellido">
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre(s)</label>
+                            <input type="text" name="resp2_nombres">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Adscripción:</label>
+                            <input type="text" name="resp2_adscripcion">
+                        </div>
+                        <div class="form-group">
+                            <label>Cargo/grado:</label>
+                            <input type="text" name="resp2_cargo">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>Firma:</label>
+                            <div class="signature-box">
+                                <label style="color: #999; font-weight: normal;">[Espacio para firma]</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit">Guardar Formulario</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('vehiculoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del formulario:', data);
+            alert('Formulario guardado. Revisa la consola para ver los datos.');
+        });
+    </script>
+</body>
+</html>

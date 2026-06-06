@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPH - Sección 5. Narrativa de los Hechos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: -20px -20px 15px -20px;
+            text-align: center;
+        }
+        
+        .subsection-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 15px;
+            color: #333;
+        }
+        
+        .instructions {
+            background-color: #e7f3ff;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .instructions strong {
+            color: #0056b3;
+        }
+        
+        .questions-guide {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        
+        .questions-guide ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        .questions-guide li {
+            margin-bottom: 8px;
+        }
+        
+        .questions-guide li strong {
+            color: #856404;
+            font-size: 14px;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            resize: vertical;
+            min-height: 400px;
+            line-height: 1.6;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+        }
+        
+        .char-counter {
+            text-align: right;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .note {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 3px solid #666;
+        }
+        
+        .page-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #333;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            flex-wrap: wrap;
+        }
+        
+        .toolbar button {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            background-color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .toolbar button:hover {
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="narrativaForm">
+            <!-- SECCIÓN 5 -->
+            <div class="section">
+                <div class="section-title">SECCIÓN 5. NARRATIVA DE LOS HECHOS</div>
+                
+                <div class="subsection-title">Apartado 5.1 Descripción de los hechos y actuación de la autoridad</div>
+                
+                <div class="instructions">
+                    <strong>Instrucciones:</strong> Relate cronológicamente las acciones realizadas durante su intervención desde el conocimiento del hecho hasta la puesta a disposición. En su caso, explique las circunstancias de modo, tiempo y lugar que motivaron cada uno de los niveles de contacto y la detención.
+                </div>
+                
+                <div class="questions-guide">
+                    <strong>Tome como base las siguientes preguntas:</strong>
+                    <ul>
+                        <li><strong>¿Quién?</strong> (personas)</li>
+                        <li><strong>¿Qué?</strong> (hechos)</li>
+                        <li><strong>¿Cómo?</strong> (circunstancias)</li>
+                        <li><strong>¿Cuándo?</strong> (tiempo)</li>
+                        <li><strong>¿Dónde?</strong> (lugar)</li>
+                    </ul>
+                </div>
+                
+                <div class="toolbar">
+                    <button type="button" onclick="insertText('¿Quién? ')">👤 Quién</button>
+                    <button type="button" onclick="insertText('¿Qué? ')">📋 Qué</button>
+                    <button type="button" onclick="insertText('¿Cómo? ')">❓ Cómo</button>
+                    <button type="button" onclick="insertText('¿Cuándo? ')">🕐 Cuándo</button>
+                    <button type="button" onclick="insertText('¿Dónde? ')">📍 Dónde</button>
+                    <button type="button" onclick="insertTimestamp()">⏰ Insertar hora</button>
+                    <button type="button" onclick="clearText()">🗑️ Limpiar</button>
+                </div>
+                
+                <textarea 
+                    id="narrativa" 
+                    name="narrativa_hechos" 
+                    placeholder="Escriba aquí la narrativa detallada de los hechos...
+
+Ejemplo de estructura:
+
+Conocimiento del hecho:
+El día [fecha] a las [hora], siendo las [hora] horas, me encontraba realizando labores de vigilancia en [lugar], cuando...
+
+Intervención:
+Al observar [descripción de lo observado], procedí a...
+
+Desarrollo de los hechos:
+Durante la intervención, la persona [descripción]...
+
+Detención (si aplica):
+Debido a [circunstancias], procedí a la detención de [persona]...
+
+Puesta a disposición:
+Finalmente, a las [hora] del día [fecha], puse a disposición de [autoridad]..."
+                    required></textarea>
+                
+                <div class="char-counter">
+                    <span id="charCount">0</span> caracteres
+                </div>
+                
+                <div class="note">
+                    <strong>Nota:</strong> De ser necesario puede continuar la narración en el Anexo G (Continuación de la narrativa de los hechos y/o entrevista).
+                </div>
+            </div>
+            
+            <div class="page-footer">
+                Página 4 de 4
+            </div>
+            
+            <button type="submit">Guardar Formulario</button>
+        </form>
+    </div>
+    
+    <script>
+        const textarea = document.getElementById('narrativa');
+        const charCount = document.getElementById('charCount');
+        
+        // Contador de caracteres
+        textarea.addEventListener('input', function() {
+            charCount.textContent = this.value.length.toLocaleString();
+        });
+        
+        // Función para insertar texto en la posición del cursor
+        function insertText(text) {
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const value = textarea.value;
+            
+            textarea.value = value.substring(0, start) + text + value.substring(end);
+            textarea.focus();
+            textarea.selectionStart = textarea.selectionEnd = start + text.length;
+            
+            // Actualizar contador
+            charCount.textContent = textarea.value.length.toLocaleString();
+        }
+        
+        // Función para insertar timestamp
+        function insertTimestamp() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+            
+            const timestamp = `[${day}/${month}/${year} - ${hours}:${minutes}] `;
+            insertText(timestamp);
+        }
+        
+        // Función para limpiar texto
+        function clearText() {
+            if (confirm('¿Está seguro de que desea limpiar toda la narrativa?')) {
+                textarea.value = '';
+                charCount.textContent = '0';
+                textarea.focus();
+            }
+        }
+        
+        // Auto-guardado en localStorage
+        textarea.addEventListener('input', function() {
+            localStorage.setItem('narrativa_borrador', this.value);
+        });
+        
+        // Recuperar borrador al cargar
+        window.addEventListener('load', function() {
+            const borrador = localStorage.getItem('narrativa_borrador');
+            if (borrador && borrador.length > 0) {
+                if (confirm('Se encontró un borrador guardado. ¿Desea recuperarlo?')) {
+                    textarea.value = borrador;
+                    charCount.textContent = borrador.length.toLocaleString();
+                }
+            }
+        });
+        
+        // Envío del formulario
+        document.getElementById('narrativaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del formulario:', data);
+            
+            // Limpiar borrador después de guardar
+            if (confirm('Formulario guardado exitosamente. ¿Desea limpiar el borrador guardado automáticamente?')) {
+                localStorage.removeItem('narrativa_borrador');
+            }
+            
+            alert('Formulario guardado. Revisa la consola para ver los datos.');
+        });
+        
+        // Advertencia antes de salir si hay texto sin guardar
+        window.addEventListener('beforeunload', function(e) {
+            if (textarea.value.length > 0) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

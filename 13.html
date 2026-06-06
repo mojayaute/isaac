@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo E - Entrevistas (Continuación)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 22px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.full {
+            flex: 1 1 100%;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .rights-list {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            margin: 15px 0;
+        }
+        
+        .rights-list ol {
+            margin-left: 20px;
+        }
+        
+        .rights-list li {
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .subtitle {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .signature-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 15px;
+            background-color: #f9f9f9;
+            min-height: 100px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .signature-box label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ANEXO E. ENTREVISTAS - Continuación</h1>
+        
+        <form id="entrevistaContinuacionForm">
+            <!-- Apartado E.4 -->
+            <div class="section">
+                <div class="section-title">Apartado E.4 Datos del lugar del traslado o canalización de la persona entrevistada</div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Trasladó o canalizó a la persona entrevistada?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="traslado" value="si" id="trasl_si">
+                                <label for="trasl_si" style="margin: 0;">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="traslado" value="no" id="trasl_no">
+                                <label for="trasl_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Lugar de traslado o canalización:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="lugar_traslado" value="fiscalia" id="lugar_fiscalia">
+                                <label for="lugar_fiscalia" style="margin: 0;">Fiscalía/Agencia</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="lugar_traslado" value="hospital" id="lugar_hospital">
+                                <label for="lugar_hospital" style="margin: 0;">Hospital</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="lugar_traslado" value="otra" id="lugar_otra">
+                                <label for="lugar_otra" style="margin: 0;">Otra dependencia</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Cuál?</label>
+                        <input type="text" name="lugar_traslado_cual" placeholder="Especifique el lugar">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado E.5 -->
+            <div class="section">
+                <div class="section-title">Apartado E.5 Constancia de lectura de derechos, SÓLO en caso de víctima u ofendido</div>
+                <div class="subtitle">Artículo 20 apartado C de la Constitución Política de los Estados Unidos Mexicanos y artículos 109 del Código Nacional de Procedimientos Penales y 7 de la Ley General de Víctimas.</div>
+                
+                <strong style="display: block; margin-bottom: 15px;">Indique a la víctima u ofendido que tiene derecho a:</strong>
+                
+                <div class="rights-list">
+                    <ol>
+                        <li>Recibir asesoría jurídica; ser informado de los derechos que en su favor establece la Constitución y, cuando lo solicite, ser informado del desarrollo del procedimiento penal.</li>
+                        <li>Recibir desde la comisión del delito, atención médica y psicológica de urgencia.</li>
+                        <li>Comunicarse inmediatamente después de haberse cometido el delito con un familiar, incluso con su asesor jurídico.</li>
+                        <li>Ser tratado con respeto y dignidad.</li>
+                        <li>Contar con un asesor jurídico gratuito en cualquier etapa del procedimiento, en los términos de la legislación aplicable.</li>
+                        <li>Acceder a la justicia de manera pronta, gratuita e imparcial respecto de sus denuncias o querellas.</li>
+                        <li>Recibir gratuitamente la asistencia de un intérprete o traductor.</li>
+                        <li>Que se le proporcione asistencia migratoria cuando tenga otra nacionalidad.</li>
+                        <li>Que se resguarde su identidad y datos personales, en los términos que establece la ley.</li>
+                    </ol>
+                </div>
+                
+                <div class="signature-box">
+                    <label>Firma/Huella de la víctima u ofendido</label>
+                    <div style="margin-top: 30px; font-size: 12px; color: #999;">
+                        [Espacio para firma o huella digital]
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado E.6 -->
+            <div class="section">
+                <div class="section-title">Apartado E.6 Datos del primer respondiente que realizó la entrevista, sólo si es diferente a quien firmó la puesta a disposición</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido</label>
+                        <input type="text" name="resp_primer_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido</label>
+                        <input type="text" name="resp_segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s)</label>
+                        <input type="text" name="resp_nombres">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Adscripción:</label>
+                        <input type="text" name="resp_adscripcion">
+                    </div>
+                    <div class="form-group">
+                        <label>Cargo/grado:</label>
+                        <input type="text" name="resp_cargo">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Firma:</label>
+                        <div class="signature-box">
+                            <label style="color: #999; font-weight: normal;">[Espacio para firma]</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit">Guardar Formulario</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('entrevistaContinuacionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del formulario:', data);
+            alert('Formulario guardado. Revisa la consola para ver los datos.');
+        });
+    </script>
+</body>
+</html>

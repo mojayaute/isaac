@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo D - Inventario de Objetos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #856404;
+        }
+        
+        .note {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #0c5460;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: -20px -20px 15px -20px;
+        }
+        
+        .objeto-block {
+            background-color: #f9f9f9;
+            border: 2px solid #28a745;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        
+        .objeto-number {
+            font-weight: bold;
+            font-size: 18px;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.full {
+            flex: 1 1 100%;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .signature-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: white;
+            min-height: 60px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+        
+        .signature-box label {
+            font-weight: normal;
+            color: #999;
+            font-size: 11px;
+        }
+        
+        .persona-firma {
+            background-color: #e7f3ff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            border: 1px solid #007bff;
+        }
+        
+        .testigos-section {
+            background-color: #fff3cd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            border: 1px solid #ffc107;
+        }
+        
+        .subsection-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #333;
+        }
+        
+        .inline-input {
+            display: inline-block;
+            width: 200px;
+            margin-left: 10px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 10px 5px;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ANEXO D. INVENTARIO DE ARMAS Y OBJETOS</h1>
+        
+        <div class="warning">
+            Llene tantas veces como sea necesario este Anexo.
+        </div>
+        
+        <div class="note">
+            <strong>Nota:</strong> Este Anexo no sustituye la Cadena de Custodia, la cual deberá ser debidamente requisitada.
+        </div>
+        
+        <form id="objetosForm">
+            <!-- Apartado D.3 -->
+            <div class="section">
+                <div class="section-title">Apartado D.3 Registro de objetos recolectados y/o asegurados relacionados con el hecho probablemente delictivo</div>
+                
+                <div id="objetosContainer">
+                    <!-- Objeto 1 -->
+                    <div class="objeto-block" data-objeto="1">
+                        <div class="objeto-number">Objeto: 001</div>
+                        
+                        <div class="form-row">
+                            <div class="form-group full">
+                                <label>Seleccione con una "X" si se trata de aportación o inspección, según corresponda:</label>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="radio" name="tipo_1" value="aportacion" id="tipo_aport_1" required>
+                                        <label for="tipo_aport_1" style="margin: 0;">Aportación</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="radio" name="tipo_1" value="inspeccion" id="tipo_insp_1">
+                                        <label for="tipo_insp_1" style="margin: 0;">Inspección:</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group full">
+                                <label>Lugar (Persona/Vehículo):</label>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="radio" name="lugar_1" value="persona" id="lugar_persona_1">
+                                        <label for="lugar_persona_1" style="margin: 0;">Persona</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="radio" name="lugar_1" value="vehiculo" id="lugar_vehiculo_1">
+                                        <label for="lugar_vehiculo_1" style="margin: 0;">Vehículo</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group full">
+                                <label>¿Dónde se encontró el objeto?</label>
+                                <input type="text" name="donde_encontro_1" placeholder="Descripción del lugar específico">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group full">
+                                <label>¿Qué encontró? (apariencia de):</label>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" name="tipo_obj_narcotico_1" id="narcotico_1">
+                                        <label for="narcotico_1" style="margin: 0;">Narcótico</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" name="tipo_obj_hidrocarburo_1" id="hidrocarburo_1">
+                                        <label for="hidrocarburo_1" style="margin: 0;">Hidrocarburo</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" name="tipo_obj_numerario_1" id="numerario_1">
+                                        <label for="numerario_1" style="margin: 0;">Numerario</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" name="tipo_obj_otro_1" id="otro_1">
+                                        <label for="otro_1" style="margin: 0;">Otro:</label>
+                                        <input type="text" name="tipo_obj_otro_cual_1" class="inline-input" placeholder="Especifique">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group full">
+                                <label>Breve descripción del objeto:</label>
+                                <textarea name="descripcion_1" rows="4" placeholder="Describa el objeto: color, tamaño, peso aproximado, cantidad, empaque, características particulares, etc."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group full">
+                                <label>Destino que se le dio:</label>
+                                <input type="text" name="destino_1" placeholder="Ej: Se puso a disposición de..., se resguardó en...">
+                            </div>
+                        </div>
+                        
+                        <!-- Persona asegurada -->
+                        <div class="persona-firma">
+                            <div class="subsection-title">Anote el nombre y firma de la persona a la que se le aseguró el objeto:</div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Primer apellido</label>
+                                    <input type="text" name="aseg_primer_apellido_1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Segundo apellido</label>
+                                    <input type="text" name="aseg_segundo_apellido_1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nombre(s)</label>
+                                    <input type="text" name="aseg_nombres_1">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group full">
+                                    <label>Firma:</label>
+                                    <div class="signature-box">
+                                        <label>[Espacio para firma]</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testigos -->
+                        <div class="testigos-section">
+                            <div class="subsection-title">En caso de que la persona a la que se le aseguró el objeto no acceda a firmar, anote nombre y firma de dos testigos:</div>
+                            
+                            <strong style="display: block; margin: 15px 0 10px 0; font-size: 13px;">Testigo 1:</strong>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Primer apellido</label>
+                                    <input type="text" name="testigo1_primer_apellido_1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Segundo apellido</label>
+                                    <input type="text" name="testigo1_segundo_apellido_1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nombre(s)</label>
+                                    <input type="text" name="testigo1_nombres_1">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group full">
+                                    <label>Firma:</label>
+                                    <div class="signature-box">
+                                        <label>[Espacio para firma]</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <strong style="display: block; margin: 15px 0 10px 0; font-size: 13px;">Testigo 2:</strong>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Primer apellido</label>
+                                    <input type="text" name="testigo2_primer_apellido_1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Segundo apellido</label>
+                                    <input type="text" name="testigo2_segundo_apellido_1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nombre(s)</label>
+                                    <input type="text" name="testigo2_nombres_1">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group full">
+                                    <label>Firma:</label>
+                                    <div class="signature-box">
+                                        <label>[Espacio para firma]</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn-container">
+                    <button type="button" class="btn-success" onclick="agregarObjeto()">➕ Agregar otro objeto</button>
+                </div>
+            </div>
+            
+            <!-- Apartado D.4 -->
+            <div class="section">
+                <div class="section-title">Apartado D.4 Datos del primer respondiente que realizó la recolección y/o aseguramiento del o los objetos, sólo si es diferente a quien firmó la puesta a disposición</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido</label>
+                        <input type="text" name="resp_primer_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido</label>
+                        <input type="text" name="resp_segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s)</label>
+                        <input type="text" name="resp_nombres">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Adscripción:</label>
+                        <input type="text" name="resp_adscripcion">
+                    </div>
+                    <div class="form-group">
+                        <label>Cargo/grado:</label>
+                        <input type="text" name="resp_cargo">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Firma:</label>
+                        <div class="signature-box">
+                            <label>[Espacio para firma]</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn-container">
+                <button type="submit" class="btn-primary">💾 Guardar Formulario</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        let objetoCounter = 1;
+        
+        function agregarObjeto() {
+            objetoCounter++;
+            const container = document.getElementById('objetosContainer');
+            
+            const objetoBlock = document.createElement('div');
+            objetoBlock.className = 'objeto-block';
+            objetoBlock.setAttribute('data-objeto', objetoCounter);
+            
+            const objetoNumber = String(objetoCounter).padStart(3, '0');
+            
+            objetoBlock.innerHTML = `
+                <div class="objeto-number">Objeto: ${objetoNumber}</div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Seleccione con una "X" si se trata de aportación o inspección, según corresponda:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="tipo_${objetoCounter}" value="aportacion" id="tipo_aport_${objetoCounter}" required>
+                                <label for="tipo_aport_${objetoCounter}" style="margin: 0;">Aportación</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="tipo_${objetoCounter}" value="inspeccion" id="tipo_insp_${objetoCounter}">
+                                <label for="tipo_insp_${objetoCounter}" style="margin: 0;">Inspección:</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Lugar (Persona/Vehículo):</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="lugar_${objetoCounter}" value="persona" id="lugar_persona_${objetoCounter}">
+                                <label for="lugar_persona_${objetoCounter}" style="margin: 0;">Persona</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="lugar_${objetoCounter}" value="vehiculo" id="lugar_vehiculo_${objetoCounter}">
+                                <label for="lugar_vehiculo_${objetoCounter}" style="margin: 0;">Vehículo</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Dónde se encontró el objeto?</label>
+                        <input type="text" name="donde_encontro_${objetoCounter}" placeholder="Descripción del lugar específico">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Qué encontró? (apariencia de):</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="tipo_obj_narcotico_${objetoCounter}" id="narcotico_${objetoCounter}">
+                                <label for="narcotico_${objetoCounter}" style="margin: 0;">Narcótico</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="tipo_obj_hidrocarburo_${objetoCounter}" id="hidrocarburo_${objetoCounter}">
+                                <label for="hidrocarburo_${objetoCounter}" style="margin: 0;">Hidrocarburo</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="tipo_obj_numerario_${objetoCounter}" id="numerario_${objetoCounter}">
+                                <label for="numerario_${objetoCounter}" style="margin: 0;">Numerario</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="tipo_obj_otro_${objetoCounter}" id="otro_${objetoCounter}">
+                                <label for="otro_${objetoCounter}" style="margin: 0;">Otro:</label>
+                                <input type="text" name="tipo_obj_otro_cual_${objetoCounter}" class="inline-input" placeholder="Especifique">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Breve descripción del objeto:</label>
+                        <textarea name="descripcion_${objetoCounter}" rows="4" placeholder="Describa el objeto: color, tamaño, peso aproximado, cantidad, empaque, características particulares, etc."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Destino que se le dio:</label>
+                        <input type="text" name="destino_${objetoCounter}" placeholder="Ej: Se puso a disposición de..., se resguardó en...">
+                    </div>
+                </div>
+                
+                <div class="persona-firma">
+                    <div class="subsection-title">Anote el nombre y firma de la persona a la que se le aseguró el objeto:</div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Primer apellido</label>
+                            <input type="text" name="aseg_primer_apellido_${objetoCounter}">
+                        </div>
+                        <div class="form-group">
+                            <label>Segundo apellido</label>
+                            <input type="text" name="aseg_segundo_apellido_${objetoCounter}">
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre(s)</label>
+                            <input type="text" name="aseg_nombres_${objetoCounter}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>Firma:</label>
+                            <div class="signature-box">
+                                <label>[Espacio para firma]</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testigos-section">
+                    <div class="subsection-title">En caso de que la persona a la que se le aseguró el objeto no acceda a firmar, anote nombre y firma de dos testigos:</div>
+                    
+                    <strong style="display: block; margin: 15px 0 10px 0; font-size: 13px;">Testigo 1:</strong>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Primer apellido</label>
+                            <input type="text" name="testigo1_primer_apellido_${objetoCounter}">
+                        </div>
+                        <div class="form-group">
+                            <label>Segundo apellido</label>
+                            <input type="text" name="testigo1_segundo_apellido_${objetoCounter}">
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre(s)</label>
+                            <input type="text" name="testigo1_nombres_${objetoCounter}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>Firma:</label>
+                            <div class="signature-box">
+                                <label>[Espacio para firma]</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <strong style="display: block; margin: 15px 0 10px 0; font-size: 13px;">Testigo 2:</strong>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Primer apellido</label>
+                            <input type="text" name="testigo2_primer_apellido_${objetoCounter}">
+                        </div>
+                        <div class="form-group">
+                            <label>Segundo apellido</label>
+                            <input type="text" name="testigo2_segundo_apellido_${objetoCounter}">
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre(s)</label>
+                            <input type="text" name="testigo2_nombres_${objetoCounter}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>Firma:</label>
+                            <div class="signature-box">
+                                <label>[Espacio para firma]</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn-primary" onclick="eliminarObjeto(${objetoCounter})" style="margin-top: 15px;">🗑️ Eliminar este objeto</button>
+            `;
+            
+            container.appendChild(objetoBlock);
+            
+            // Scroll hacia el nuevo objeto
+            objetoBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        function eliminarObjeto(numero) {
+            if (confirm('¿Está seguro de que desea eliminar este objeto del registro?')) {
+                const objetoBlock = document.querySelector(`[data-objeto="${numero}"]`);
+                if (objetoBlock) {
+                    objetoBlock.remove();
+                }
+            }
+        }
+        
+        document.getElementById('objetosForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del formulario:', data);
+            alert('Formulario guardado. Total de objetos registrados: ' + objetoCounter + '. Revisa la consola para ver los datos.');
+        });
+    </script>
+</body>
+</html>

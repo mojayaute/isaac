@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo A - Apartados 7 y 8</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.small {
+            min-width: 100px;
+            flex: 0.5;
+        }
+        
+        .form-group.full {
+            flex: 1 1 100%;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .inline-input {
+            display: inline-block;
+            width: 200px;
+            margin-left: 10px;
+        }
+        
+        .signature-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            min-height: 80px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .signature-box label {
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .instructions {
+            background-color: #e7f3ff;
+            border-left: 4px solid #007bff;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="trasladoForm">
+            <!-- Apartado A.7 -->
+            <div class="section">
+                <div class="section-title">Apartado A.7 Datos del lugar del traslado de la persona detenida</div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Lugar de traslado:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="lugar_traslado" value="fiscalia" id="lugar_fiscalia">
+                                <label for="lugar_fiscalia" style="margin: 0;">Fiscalía/Agencia</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="lugar_traslado" value="hospital" id="lugar_hospital">
+                                <label for="lugar_hospital" style="margin: 0;">Hospital</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="lugar_traslado" value="otra" id="lugar_otra">
+                                <label for="lugar_otra" style="margin: 0;">Otra dependencia</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Cuál?</label>
+                        <input type="text" name="lugar_traslado_cual">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Observaciones relacionadas con la detención</label>
+                        <div class="instructions">
+                            Describa brevemente la ruta y el medio de traslado desde el lugar de la detención hasta la puesta a disposición, así como la razón de posibles demoras. Incluya cualquier otra observación que considere relevante.
+                        </div>
+                        <textarea name="observaciones_detencion" rows="6" placeholder="Ejemplo: 
+- Ruta tomada: Saliendo del lugar de detención ubicado en [dirección], nos trasladamos por [calles/avenidas] hasta llegar a [destino].
+- Medio de traslado: Patrulla oficial número [###].
+- Tiempo de traslado: Aproximadamente [X] minutos.
+- Demoras: [Si las hubo, explicar la razón: tráfico, desvíos, atención médica, etc.]
+- Observaciones adicionales: [Comportamiento de la persona detenida, condiciones del traslado, etc.]"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apartado A.8 -->
+            <div class="section">
+                <div class="section-title">Apartado A.8 Datos del primer respondiente que realizó la detención</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primer apellido</label>
+                        <input type="text" name="resp_primer_apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo apellido</label>
+                        <input type="text" name="resp_segundo_apellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre(s)</label>
+                        <input type="text" name="resp_nombres" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Adscripción:</label>
+                        <input type="text" name="resp_adscripcion">
+                    </div>
+                    <div class="form-group">
+                        <label>Cargo/grado:</label>
+                        <input type="text" name="resp_cargo">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Firma:</label>
+                        <div class="signature-box">
+                            <label style="color: #999; font-weight: normal;">[Espacio para firma]</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Segundo respondiente (opcional) -->
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px dashed #ccc;">
+                    <strong style="display: block; margin-bottom: 15px; font-size: 14px;">Segundo respondiente (si aplica):</strong>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Primer apellido</label>
+                            <input type="text" name="resp2_primer_apellido">
+                        </div>
+                        <div class="form-group">
+                            <label>Segundo apellido</label>
+                            <input type="text" name="resp2_segundo_apellido">
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre(s)</label>
+                            <input type="text" name="resp2_nombres">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Adscripción:</label>
+                            <input type="text" name="resp2_adscripcion">
+                        </div>
+                        <div class="form-group">
+                            <label>Cargo/grado:</label>
+                            <input type="text" name="resp2_cargo">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>Firma:</label>
+                            <div class="signature-box">
+                                <label style="color: #999; font-weight: normal;">[Espacio para firma]</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit">Guardar Formulario</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('trasladoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del formulario:', data);
+            alert('Formulario guardado. Revisa la consola para ver los datos.');
+        });
+    </script>
+</body>
+</html>

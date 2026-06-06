@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPH - Apartado 4.2 Inspección del lugar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: -20px -20px 15px -20px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group.full {
+            flex: 1 1 100%;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .note {
+            font-size: 11px;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .croquis-box {
+            border: 2px dashed #999;
+            padding: 20px;
+            margin-top: 15px;
+            background-color: #fafafa;
+            min-height: 400px;
+            position: relative;
+        }
+        
+        .croquis-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .croquis-note {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .canvas-container {
+            background-color: white;
+            border: 1px solid #ccc;
+            position: relative;
+            cursor: crosshair;
+        }
+        
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .drawing-tools {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            flex-wrap: wrap;
+        }
+        
+        .tool-button {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            background-color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .tool-button:hover {
+            background-color: #e9ecef;
+        }
+        
+        .tool-button.active {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        
+        .color-picker {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .color-picker input[type="color"] {
+            width: 40px;
+            height: 35px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .page-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #333;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="inspeccionForm">
+            <!-- Apartado 4.2 -->
+            <div class="section">
+                <div class="section-title">Apartado 4.2 Inspección del lugar</div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Realizó la inspección del lugar?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="realizo_inspeccion" value="si" id="inspec_si" required>
+                                <label for="inspec_si" style="margin: 0;">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="realizo_inspeccion" value="no" id="inspec_no">
+                                <label for="inspec_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Al momento de realizar la inspección del lugar, ¿encontró algún objeto relacionado con los hechos?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="objetos_encontrados" value="si" id="obj_si">
+                                <label for="obj_si" style="margin: 0;">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="objetos_encontrados" value="no" id="obj_no">
+                                <label for="obj_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                        <div class="note">Si respondió Sí, llene el Anexo D</div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Preservó el lugar de la intervención?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="preservo_lugar" value="si" id="pres_si">
+                                <label for="pres_si" style="margin: 0;">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="preservo_lugar" value="no" id="pres_no">
+                                <label for="pres_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>¿Llevó a cabo la priorización en el lugar de la intervención?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="radio" name="priorizacion" value="si" id="prior_si">
+                                <label for="prior_si" style="margin: 0;">Sí</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="radio" name="priorizacion" value="no" id="prior_no">
+                                <label for="prior_no" style="margin: 0;">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row" style="margin-top: 20px;">
+                    <div class="form-group full">
+                        <label>Tipo de riesgo presentado:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="riesgo_sociales" id="riesgo_soc">
+                                <label for="riesgo_soc" style="margin: 0;">Sociales</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="riesgo_naturales" id="riesgo_nat">
+                                <label for="riesgo_nat" style="margin: 0;">Naturales</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>Especifique:</label>
+                        <textarea name="riesgo_especifique" rows="3"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Croquis del lugar -->
+                <div class="croquis-box">
+                    <div class="croquis-title">Croquis del lugar</div>
+                    <div class="croquis-note">
+                        Es necesario incluir elementos y referencias que permitan identificar el o los lugares de la intervención, detención y/o hallazgo, como vialidades, árboles, cerros, ríos o edificaciones.
+                    </div>
+                    
+                    <div class="drawing-tools">
+                        <button type="button" class="tool-button active" id="drawBtn">✏️ Dibujar</button>
+                        <button type="button" class="tool-button" id="eraseBtn">🧹 Borrar</button>
+                        <button type="button" class="tool-button" id="clearBtn">🗑️ Limpiar todo</button>
+                        <div class="color-picker">
+                            <label style="margin: 0; font-size: 12px;">Color:</label>
+                            <input type="color" id="colorPicker" value="#000000">
+                        </div>
+                        <div class="color-picker">
+                            <label style="margin: 0; font-size: 12px;">Grosor:</label>
+                            <select id="lineWidth" style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                                <option value="1">Fino</option>
+                                <option value="2" selected>Normal</option>
+                                <option value="4">Grueso</option>
+                                <option value="6">Muy grueso</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="canvas-container">
+                        <canvas id="croquis" width="800" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-footer">
+                Página 3 de 4
+            </div>
+            
+            <button type="submit">Guardar Formulario</button>
+        </form>
+    </div>
+    
+    <script>
+        // Canvas para el croquis
+        const canvas = document.getElementById('croquis');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let currentTool = 'draw';
+        let currentColor = '#000000';
+        let lineWidth = 2;
+        
+        // Ajustar canvas al tamaño del contenedor
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            canvas.style.width = '100%';
+            canvas.style.height = '400px';
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Herramientas de dibujo
+        document.getElementById('drawBtn').addEventListener('click', function() {
+            currentTool = 'draw';
+            document.querySelectorAll('.tool-button').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+        
+        document.getElementById('eraseBtn').addEventListener('click', function() {
+            currentTool = 'erase';
+            document.querySelectorAll('.tool-button').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+        
+        document.getElementById('clearBtn').addEventListener('click', function() {
+            if (confirm('¿Está seguro de que desea limpiar todo el croquis?')) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        });
+        
+        document.getElementById('colorPicker').addEventListener('change', function(e) {
+            currentColor = e.target.value;
+        });
+        
+        document.getElementById('lineWidth').addEventListener('change', function(e) {
+            lineWidth = parseInt(e.target.value);
+        });
+        
+        // Funciones de dibujo
+        function startDrawing(e) {
+            isDrawing = true;
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+            const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+            
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+        
+        function draw(e) {
+            if (!isDrawing) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+            const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+            
+            if (currentTool === 'draw') {
+                ctx.strokeStyle = currentColor;
+                ctx.lineWidth = lineWidth;
+                ctx.lineCap = 'round';
+                ctx.lineTo(x, y);
+                ctx.stroke();
+            } else if (currentTool === 'erase') {
+                ctx.clearRect(x - 10, y - 10, 20, 20);
+            }
+        }
+        
+        function stopDrawing() {
+            isDrawing = false;
+        }
+        
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        
+        // Soporte táctil
+        canvas.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousedown', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        });
+        
+        canvas.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousemove', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        });
+        
+        canvas.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            const mouseEvent = new MouseEvent('mouseup', {});
+            canvas.dispatchEvent(mouseEvent);
+        });
+        
+        // Envío del formulario
+        document.getElementById('inspeccionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Guardar el croquis como imagen
+            data.croquis_imagen = canvas.toDataURL();
+            
+            console.log('Datos del formulario:', data);
+            alert('Formulario guardado. El croquis ha sido capturado. Revisa la consola para ver los datos.');
+        });
+    </script>
+</body>
+</html>

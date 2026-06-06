@@ -1,0 +1,58 @@
+.signature-pad {
+  margin-bottom: 1.5rem;
+}
+
+.signature-pad label {
+  display: block;
+  font-weight: 500;
+  color: #2c3e50;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.signature-pad .required {
+  color: #e74c3c;
+  margin-left: 0.25rem;
+}
+
+.signature-box {
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+  background-color: #fafafa;
+  text-align: center;
+}
+
+.signature-box canvas {
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: crosshair;
+  border-radius: 4px;
+  max-width: 100%;
+  height: auto;
+}
+
+.signature-actions {
+  margin-top: 0.75rem;
+}
+
+.clear-btn {
+  padding: 0.5rem 1rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.clear-btn:hover {
+  background-color: #c0392b;
+}
+
+@media (max-width: 768px) {
+  .signature-box canvas {
+    width: 100%;
+  }
+}
