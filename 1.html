@@ -265,12 +265,31 @@
             <div class="reference-item">
                 <label>SISTEMA NACIONAL DE SEGURIDAD PÚBLICA</label>
                 <label style="margin-top: 5px;">NO. DE REFERENCIA</label>
-                <div style="display: flex; gap: 5px; margin-top: 5px;">
-                    <input type="text" name="ref_edo" placeholder="EDO" maxlength="3" style="width: 60px;">
-                    <input type="text" name="ref_inst" placeholder="INST" maxlength="4" style="width: 70px;">
-                    <input type="text" name="ref_gob" placeholder="GOB" maxlength="3" style="width: 60px;">
-                    <input type="text" name="ref_mpio" placeholder="MPIO" maxlength="4" style="width: 70px;">
-                    <input type="text" name="ref_cnsp" placeholder="CNSP" style="flex: 1;">
+                <div style="display: flex; gap: 5px; margin-top: 5px; flex-wrap: wrap; align-items: flex-end;">
+                    <div style="flex: 1; min-width: 140px;">
+                        <label style="font-size: 0.75rem; display: block; margin-bottom: 4px;">EDO</label>
+                        <select name="ref_edo" id="ref_edo" required style="width: 100%; padding: 6px;">
+                            <option value="">Seleccione...</option>
+                        </select>
+                    </div>
+                    <div style="width: 70px;">
+                        <label style="font-size: 0.75rem; display: block; margin-bottom: 4px;">INST</label>
+                        <input type="text" name="ref_inst" placeholder="INST" maxlength="4" style="width: 100%;">
+                    </div>
+                    <div style="width: 60px;">
+                        <label style="font-size: 0.75rem; display: block; margin-bottom: 4px;">GOB</label>
+                        <input type="text" name="ref_gob" placeholder="GOB" maxlength="3" style="width: 100%;">
+                    </div>
+                    <div style="flex: 1; min-width: 160px;">
+                        <label style="font-size: 0.75rem; display: block; margin-bottom: 4px;">MPIO</label>
+                        <select name="ref_mpio" id="ref_mpio" required disabled style="width: 100%; padding: 6px;">
+                            <option value="">Seleccione entidad primero</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1; min-width: 120px;">
+                        <label style="font-size: 0.75rem; display: block; margin-bottom: 4px;">CNSP</label>
+                        <input type="text" name="ref_cnsp" placeholder="CNSP" style="width: 100%;">
+                    </div>
                 </div>
             </div>
             <div class="reference-item">
@@ -494,6 +513,40 @@
     </div>
     
     <script>
+        async function loadInegiCatalog() {
+            const edoSelect = document.getElementById('ref_edo');
+            const mpioSelect = document.getElementById('ref_mpio');
+
+            const statesRes = await fetch('https://gaia.inegi.org.mx/wscatgeo/v2/mgee');
+            const statesData = await statesRes.json();
+
+            statesData.datos.forEach((state) => {
+                const option = document.createElement('option');
+                option.value = state.cve_ent.padStart(2, '0');
+                option.textContent = `${option.value} ${state.nomgeo.toUpperCase()}`;
+                edoSelect.appendChild(option);
+            });
+
+            edoSelect.addEventListener('change', async function () {
+                mpioSelect.innerHTML = '<option value="">Seleccione...</option>';
+                mpioSelect.disabled = !this.value;
+
+                if (!this.value) return;
+
+                const munRes = await fetch(`https://gaia.inegi.org.mx/wscatgeo/v2/mgem/${this.value}`);
+                const munData = await munRes.json();
+
+                munData.datos.forEach((mun) => {
+                    const option = document.createElement('option');
+                    option.value = mun.cve_mun.padStart(3, '0');
+                    option.textContent = `${option.value} ${mun.nomgeo.toUpperCase()}`;
+                    mpioSelect.appendChild(option);
+                });
+            });
+        }
+
+        loadInegiCatalog().catch(console.error);
+
         document.getElementById('iphForm').addEventListener('submit', function(e) {
             e.preventDefault();
             

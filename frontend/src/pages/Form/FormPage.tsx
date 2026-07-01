@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { formsApi, responsesApi, authApi } from '../../services/api';
 import { getFormConfig } from '../../data/forms-config';
 import FormField from '../../components/forms/FormField';
@@ -11,6 +11,7 @@ import FormCheckbox from '../../components/forms/FormCheckbox';
 import FormTable from '../../components/forms/FormTable';
 import FormRow from '../../components/forms/FormRow';
 import SignaturePad from '../../components/forms/SignaturePad';
+import FormInegiSelect from '../../components/forms/FormInegiSelect';
 import './FormPage.css';
 
 const FormPage = () => {
@@ -53,6 +54,7 @@ const FormPage = () => {
     formState: { errors },
     reset,
     watch,
+    setValue,
   } = useForm({
     defaultValues: savedResponse?.formData || {},
   });
@@ -63,6 +65,19 @@ const FormPage = () => {
       reset(savedResponse.formData);
     }
   }, [savedResponse, reset]);
+
+  const selectedEstado = watch('ref_edo');
+  const prevEstadoRef = useRef<string | undefined>(undefined);
+
+  useEffect(() => {
+    if (
+      prevEstadoRef.current !== undefined &&
+      prevEstadoRef.current !== selectedEstado
+    ) {
+      setValue('ref_mpio', '');
+    }
+    prevEstadoRef.current = selectedEstado;
+  }, [selectedEstado, setValue]);
 
   // Mutation para guardar
   const saveMutation = useMutation({
@@ -133,6 +148,33 @@ const FormPage = () => {
     }
 
     switch (type) {
+      case 'inegi-estado':
+        return (
+          <FormInegiSelect
+            key={name}
+            label={label}
+            name={name}
+            register={register}
+            error={errors[name]}
+            required={required}
+            variant="estado"
+          />
+        );
+
+      case 'inegi-municipio':
+        return (
+          <FormInegiSelect
+            key={name}
+            label={label}
+            name={name}
+            register={register}
+            error={errors[name]}
+            required={required}
+            variant="municipio"
+            estadoCode={selectedEstado}
+          />
+        );
+
       case 'text':
       case 'date':
       case 'time':
@@ -147,6 +189,7 @@ const FormPage = () => {
             error={errors[name]}
             required={required}
             placeholder={placeholder}
+            maxLength={maxLength}
           />
         );
 
@@ -268,12 +311,16 @@ const FormPage = () => {
           let currentRow: any[] = [];
 
           section.fields.forEach((field) => {
-            const isFullWidth = 
-              field.type === 'textarea' || 
-              field.type === 'table' || 
-              field.type === 'signature' || 
-              field.type === 'checkbox' ||
-              (field.type === 'text' && (field.name.startsWith('subsection') || field.name === 'section_title'));
+                const isFullWidth = 
+                  field.type === 'textarea' || 
+                  field.type === 'table' || 
+                  field.type === 'signature' || 
+                  field.type === 'checkbox' ||
+                  field.type === 'inegi-estado' ||
+                  field.type === 'inegi-municipio' ||
+                  field.name === 'ref_cnsp' ||
+                  field.name === 'folio_sistema' ||
+                  (field.type === 'text' && (field.name.startsWith('subsection') || field.name === 'section_title'));
 
             if (isFullWidth) {
               // Si hay campos en la fila actual, guardarla
@@ -308,6 +355,10 @@ const FormPage = () => {
                   firstField.type === 'table' || 
                   firstField.type === 'signature' || 
                   firstField.type === 'checkbox' ||
+                  firstField.type === 'inegi-estado' ||
+                  firstField.type === 'inegi-municipio' ||
+                  firstField.name === 'ref_cnsp' ||
+                  firstField.name === 'folio_sistema' ||
                   (firstField.type === 'text' && (firstField.name.startsWith('subsection') || firstField.name === 'section_title'));
 
                 if (isFullWidth) {

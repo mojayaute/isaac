@@ -10,6 +10,7 @@ interface FormFieldProps {
   required?: boolean;
   placeholder?: string;
   className?: string;
+  maxLength?: number;
 }
 
 const FormField = ({
@@ -21,6 +22,7 @@ const FormField = ({
   required = false,
   placeholder,
   className = '',
+  maxLength,
 }: FormFieldProps) => {
   return (
     <div className={`form-field ${className}`}>
@@ -33,6 +35,7 @@ const FormField = ({
         type={type}
         {...register(name, { required: required ? `${label} es requerido` : false })}
         placeholder={placeholder}
+        maxLength={maxLength}
         className={error ? 'error' : ''}
       />
       {error && <span className="error-message">{error.message}</span>}

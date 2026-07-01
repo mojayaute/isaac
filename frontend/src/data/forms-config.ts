@@ -2,11 +2,13 @@
 // Esto define qué campos tiene cada formulario y cómo renderizarlos
 
 export interface FormFieldConfig {
-  type: 'text' | 'date' | 'time' | 'number' | 'email' | 'tel' | 'textarea' | 'radio' | 'checkbox' | 'table' | 'signature';
+  type: 'text' | 'date' | 'time' | 'number' | 'email' | 'tel' | 'textarea' | 'radio' | 'checkbox' | 'table' | 'signature' | 'inegi-estado' | 'inegi-municipio';
   name: string;
   label: string;
   required?: boolean;
   placeholder?: string;
+  maxLength?: number;
+  dependsOn?: string;
   // Para radio
   options?: { value: string; label: string }[];
   // Para checkbox
@@ -16,7 +18,6 @@ export interface FormFieldConfig {
   // Para textarea
   rows?: number;
   showCharCount?: boolean;
-  maxLength?: number;
 }
 
 export interface FormSection {
@@ -33,6 +34,49 @@ export interface FormConfig {
 export const form1Config: FormConfig = {
   formNumber: 1,
   sections: [
+    {
+      title: 'NO. DE REFERENCIA — SISTEMA NACIONAL DE SEGURIDAD PÚBLICA',
+      fields: [
+        {
+          type: 'inegi-estado',
+          name: 'ref_edo',
+          label: 'Entidad (EDO)',
+          required: true,
+        },
+        {
+          type: 'text',
+          name: 'ref_inst',
+          label: 'INST',
+          placeholder: 'INST',
+          maxLength: 4,
+        },
+        {
+          type: 'text',
+          name: 'ref_gob',
+          label: 'GOB',
+          placeholder: 'GOB',
+          maxLength: 3,
+        },
+        {
+          type: 'inegi-municipio',
+          name: 'ref_mpio',
+          label: 'Municipio (MPIO)',
+          required: true,
+          dependsOn: 'ref_edo',
+        },
+        {
+          type: 'text',
+          name: 'ref_cnsp',
+          label: 'CNSP',
+          placeholder: 'CNSP',
+        },
+        {
+          type: 'text',
+          name: 'folio_sistema',
+          label: 'No. de folio asignado por el sistema',
+        },
+      ],
+    },
     {
       title: 'SECCIÓN 1. PUESTA A DISPOSICIÓN',
       fields: [
