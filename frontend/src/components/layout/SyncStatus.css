@@ -1,0 +1,62 @@
+.sync-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: default;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.15);
+  min-height: 36px;
+}
+
+.sync-status:not(:disabled) {
+  cursor: pointer;
+}
+
+.sync-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+.sync-status.synced {
+  background-color: rgba(46, 204, 113, 0.25);
+  color: #d5f5e3;
+}
+
+.sync-status.pending {
+  background-color: rgba(241, 196, 15, 0.25);
+  color: #fdebd0;
+}
+
+.sync-status.syncing {
+  background-color: rgba(52, 152, 219, 0.25);
+  color: #d6eaf8;
+}
+
+.sync-status.offline {
+  background-color: rgba(231, 76, 60, 0.25);
+  color: #fadbd8;
+}
+
+.sync-status.syncing .sync-dot {
+  animation: sync-pulse 1s ease-in-out infinite;
+}
+
+@keyframes sync-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@media (max-width: 768px) {
+  .sync-status {
+    width: 100%;
+    justify-content: center;
+  }
+}

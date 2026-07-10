@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { authApi } from '../../services/api';
+import SyncStatus from './SyncStatus';
 import './Layout.css';
 
 interface LayoutProps {
@@ -49,6 +50,7 @@ const Layout = ({ children }: LayoutProps) => {
             </button>
           </div>
           <nav className={`nav ${menuOpen ? 'nav-open' : ''}`}>
+            <SyncStatus />
             <Link to="/" className={isActive('/')}>
               Dashboard
             </Link>

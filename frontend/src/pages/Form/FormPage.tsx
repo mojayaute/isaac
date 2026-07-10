@@ -2,7 +2,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { useState, useEffect, useRef } from 'react';
-import { formsApi, responsesApi, authApi } from '../../services/api';
+import { authApi } from '../../services/api';
+import { loadForm, loadResponse, saveResponse } from '../../offline/dataService';
 import { getFormConfig } from '../../data/forms-config';
 import FormField from '../../components/forms/FormField';
 import FormTextarea from '../../components/forms/FormTextarea';
@@ -29,17 +30,17 @@ const FormPage = () => {
     });
   }, []);
 
-  // Obtener formulario
+  // Obtener formulario (offline-first: cache local si no hay red)
   const { data: form, isLoading } = useQuery({
     queryKey: ['form', formNumber],
-    queryFn: () => formsApi.getByFormNumber(formNumber),
+    queryFn: () => loadForm(formNumber),
     enabled: !!formNumber,
   });
 
-  // Obtener respuesta guardada
+  // Obtener respuesta guardada (local primero, luego servidor si hay red)
   const { data: savedResponse } = useQuery({
     queryKey: ['response', userId, formNumber],
-    queryFn: () => responsesApi.getByForm(userId, formNumber),
+    queryFn: () => loadResponse(userId, formNumber),
     enabled: !!userId && !!formNumber,
   });
 
@@ -79,15 +80,16 @@ const FormPage = () => {
     prevEstadoRef.current = selectedEstado;
   }, [selectedEstado, setValue]);
 
-  // Mutation para guardar
+  // Mutation para guardar (SIEMPRE guarda en local primero; sincroniza si hay red)
   const saveMutation = useMutation({
     mutationFn: async (data: { formData: any; status: 'draft' | 'submitted' | 'completed' }) => {
-      if (savedResponse) {
-        return responsesApi.update(savedResponse.id, data.formData, data.status);
-      } else {
-        // Usar el ID del formulario, no el número
-        return responsesApi.save(form?.id || formNumber, data.formData, data.status);
-      }
+      await saveResponse({
+        userId,
+        formId: form?.id ?? formNumber,
+        formNumber,
+        formData: data.formData,
+        status: data.status,
+      });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['response', userId, formNumber] });
@@ -96,7 +98,7 @@ const FormPage = () => {
     },
     onError: () => {
       setSaving(false);
-      alert('Error al guardar. Intenta de nuevo.');
+      alert('Error al guardar en el dispositivo.');
     },
   });
 

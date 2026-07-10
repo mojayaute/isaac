@@ -27,18 +27,34 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Interceptor para manejar errores
+// Interceptor para manejar errores.
+// Solo cerramos sesión ante un 401 REAL del servidor (token inválido/expirado).
+// Los fallos de red (sin `response`) NO deben expulsar al usuario: puede estar offline.
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Token expirado o inválido
       localStorage.removeItem('access_token');
-      window.location.href = '/login';
+      localStorage.removeItem('cached_user');
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }
 );
+
+const CACHED_USER_KEY = 'cached_user';
+
+export function getCachedUser(): User | null {
+  const raw = localStorage.getItem(CACHED_USER_KEY);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as User;
+  } catch {
+    return null;
+  }
+}
 
 // API de Autenticación
 export const authApi = {
@@ -47,16 +63,32 @@ export const authApi = {
     if (response.data.access_token) {
       localStorage.setItem('access_token', response.data.access_token);
     }
+    if (response.data.user) {
+      localStorage.setItem(CACHED_USER_KEY, JSON.stringify(response.data.user));
+    }
     return response.data;
   },
 
   logout: () => {
     localStorage.removeItem('access_token');
+    localStorage.removeItem(CACHED_USER_KEY);
   },
 
+  // Intenta traer el usuario del servidor; si no hay red, usa el usuario cacheado
+  // en el último login para permitir uso offline.
   getCurrentUser: async (): Promise<User> => {
-    const response = await api.get<User>('/auth/me');
-    return response.data;
+    try {
+      const response = await api.get<User>('/auth/me');
+      localStorage.setItem(CACHED_USER_KEY, JSON.stringify(response.data));
+      return response.data;
+    } catch (error: any) {
+      const cached = getCachedUser();
+      if (!error.response && cached) {
+        // Sin respuesta del servidor => offline: devolvemos el usuario cacheado.
+        return cached;
+      }
+      throw error;
+    }
   },
 };
 
